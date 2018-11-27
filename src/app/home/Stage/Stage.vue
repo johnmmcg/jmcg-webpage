@@ -3,21 +3,28 @@
     <canvas :class="$style.canvas" ref="canvas"></canvas>
     <!-- <div :class="$style.accent"></div>
     <div :class="$style.accentTwo"></div> -->
-
-    <vue-grid>
-      <vue-grid-row>
-        <vue-grid-item class="vueGridItem">
-          <div :class="$style.textBlock">
-            <h1 :class="$style.mainTitle">John McGuinness</h1>
-            <h2 :class="$style.title">Front End Web Developer</h2>
-            <h3 :class="$style.subTitle">Philadelphia, Pennsylvania</h3>
-            <div :class="$style.title">
-              <p>[more comming soon]</p>
+    <transition
+      :enter-class="$style.enter"
+      :enter-active-class="$style.enterActive"
+      :enter-to-class="$style.enterTo"
+      :leave-class="$style.leave"
+      :leave-active-class="$style.leaveActive"
+      :leave-to-class="$style.leaveTo">
+      <vue-grid v-if="active">
+        <vue-grid-row>
+          <vue-grid-item class="vueGridItem">
+            <div :class="$style.textBlock">
+              <h1 :class="$style.mainTitle" class="animated fade">John McGuinness</h1>
+              <h2 :class="$style.title">Front End Web Developer</h2>
+              <h3 :class="$style.subTitle">Philadelphia, Pennsylvania</h3>
+              <div :class="$style.message">
+                <p>[more comming soon]</p>
+              </div>
             </div>
-          </div>
-        </vue-grid-item>
-      </vue-grid-row>
-    </vue-grid>
+          </vue-grid-item>
+        </vue-grid-row>
+      </vue-grid>
+    </transition>
   </div>
 </template>
 
@@ -27,9 +34,10 @@
   import VueGridRow          from '../../shared/components/VueGridRow/VueGridRow.vue';
   import VueGridItem         from '../../shared/components/VueGridItem/VueGridItem.vue';
   import VueIconGithub       from '../../shared/components/icons/VueIconGithub/VueIconGithub.vue';
+  import FadeAnimation from '../../shared/animations/FadeAnimation/FadeAnimation.vue';
 
   export default {
-    components: { VueIconGithub, VueGridItem, VueGridRow, VueGrid },
+    components: { VueIconGithub, VueGridItem, VueGridRow, VueGrid, FadeAnimation },
     props:      {
       disableParticles: {
         type:     Boolean,
@@ -37,7 +45,9 @@
       },
     },
     data() {
-      return {};
+      return {
+        active: false,
+      };
     },
     computed:   {},
     methods:    {
@@ -62,6 +72,13 @@
       if (!this.disableParticles) {
         // CircleAnimation(this.$refs.canvas);
       }
+
+      const self = this;
+
+      setTimeout((event) => {
+        self.active = true;
+      }, 2000);
+
     },
     beforeDestroy() {
       window.removeEventListener('resize', this.handleResize);
@@ -143,16 +160,13 @@
     text-align: center;
   }
 
-  .title, .subTitle, .github {
-    // text-shadow: 0 5px 10px rgba(0, 0, 0, 0.33);
-    // position:    relative;
-  }
-
   .mainTitle {
     font-family: $font-family-headings;
     font-size: 8rem;
     font-weight: 700;
     letter-spacing: .5rem;
+    transition: .2s linear;
+
     // top: $space-unit * 17;
 
     // @include media(tabletPortrait) {
@@ -164,8 +178,18 @@
     // }
   }
 
+  @keyframes fadeIn {
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   .title {
     font-family: $font-family;
+    transition: .2s linear;
     // top: $space-unit * 15;
     //
     // @include media(tabletPortrait) {
@@ -175,10 +199,17 @@
     // @include media(tabletLandscape) {
     //   top: $space-unit * 24;
     // }
+
   }
+
 
   .subTitle {
     font-family: $font-cursive;
+  }
+
+  .message {
+    font-family: $font-family;
+    transition: .2s linear;
   }
 
   .github {
@@ -208,5 +239,17 @@
       height: $font-size-h1;
       width:  $font-size-h1;
     }
+  }
+
+  .enterActive, .leaveActive {
+    transition: $fade-animation-transition;
+  }
+
+  .enterTo, .leave {
+    opacity: 1;
+  }
+
+  .enter, .leaveTo {
+    opacity: 0;
   }
 </style>

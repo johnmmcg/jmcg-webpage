@@ -14,7 +14,7 @@
   @import "../../styles";
 
   .grid {
-    max-width: 425px;
+    max-width: none;
     margin:    0 auto;
     position:  relative;
     padding:   0 $screen-phone-gutter;

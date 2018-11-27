@@ -75,7 +75,7 @@ $font-family: 'Montserrat', Helvetica, sans-serif;
 $space-unit: 0.8rem;
 
 /* Animations */
-$fade-animation-transition: opacity $transition-duration * 4 ease-in-out;
+$fade-animation-transition: opacity; $transition-duration * 4 ease-in-out;
 
 /* Grid */
 $screen-phone: 320px;
