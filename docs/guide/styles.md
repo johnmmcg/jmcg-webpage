@@ -69,9 +69,9 @@ $letter-spacing-h5: -.05rem;
 $letter-spacing-h6: -.1rem;
 
 /* General */
-$google-font: 'https://fonts.googleapis.com/css?family=Oxygen:300,400,700|Lato:300,400,700';
-$font-family-headings: 'Oxygen', Helvetica, sans-serif;
-$font-family: 'Lato', Helvetica, sans-serif;
+$google-font: 'https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display';
+$font-family-headings: 'Playfair Display', Helvetica, sans-serif;
+$font-family: 'Montserrat', Helvetica, sans-serif;
 $space-unit: 0.8rem;
 
 /* Animations */

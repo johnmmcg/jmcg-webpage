@@ -1,26 +1,20 @@
 <template>
   <div :class="$style.stage" ref="stage">
     <canvas :class="$style.canvas" ref="canvas"></canvas>
-    <div :class="$style.accent"></div>
-    <div :class="$style.accentTwo"></div>
+    <!-- <div :class="$style.accent"></div>
+    <div :class="$style.accentTwo"></div> -->
 
     <vue-grid>
       <vue-grid-row>
         <vue-grid-item class="vueGridItem">
-          <h1 :class="$style.title">John McGuinness</h1>
-          <h2>Front End Web Developer</h2>
-          <h2>Philadelphia, PA</h2>
-          <div :class="$style.subTitle">
-            {{
-            $t('App.core.description' /* A flexible, scalable, opinionated boilerplate for production-ready PWAs with
-            focus on performance, development speed, and best practices */)
-            }}
+          <div :class="$style.textBlock">
+            <h1 :class="$style.mainTitle">John McGuinness</h1>
+            <h2 :class="$style.title">Front End Web Developer</h2>
+            <h3 :class="$style.subTitle">Philadelphia, Pennsylvania</h3>
+            <div :class="$style.subTitle">
+              <p>This is a test</p>
+            </div>
           </div>
-
-          <a :class="$style.github" href="https://github.com/devCrossNet/vue-starter" target="_blank" rel="noopener"
-             aria-label="github repository">
-            <vue-icon-github />
-          </a>
         </vue-grid-item>
       </vue-grid-row>
     </vue-grid>
@@ -66,7 +60,7 @@
       this.handleResize();
 
       if (!this.disableParticles) {
-        CircleAnimation(this.$refs.canvas);
+        // CircleAnimation(this.$refs.canvas);
       }
     },
     beforeDestroy() {
@@ -80,57 +74,56 @@
 
   .stage {
     min-height: 100vh;
-    background: linear-gradient(171deg, $brand-dark-primary 0%, $brand-primary 100%);
+    background: $bg-color;
     overflow:   hidden;
     position:   relative;
     text-align: center;
-    @include background-gradient($brand-dark-primary, $brand-primary, 171deg);
   }
 
   .accent {
-    width:      56%;
+    width:      75%;
     min-height: 100vh;
-    transform:  skewX(-40deg) translateX(100%);
+    transform:  skewX(-30deg) translateX(95%);
     box-shadow: $nav-bar-shadow;
     position:   absolute;
     transition: transform 250ms linear;
-    @include background-gradient($brand-light-primary, $brand-dark-primary, -171deg);
+    @include background-gradient($brand-primary, $brand-dark-primary, -171deg);
 
-    @include media(tabletPortrait) {
-      transform: skewX(-33deg) translateX(100%);
-    }
-
-    @include media(tabletLandscape) {
-      transform: skewX(-44deg) translateX(100%);
-    }
-
-    @include media(smallDesktop) {
-      transform: skewX(-46deg) translateX(117%);
-      width:     49%;
-    }
+    // @include media(tabletPortrait) {
+    //   transform: skewX(-33deg) translateX(100%);
+    // }
+    //
+    // @include media(tabletLandscape) {
+    //   transform: skewX(-44deg) translateX(100%);
+    // }
+    //
+    // @include media(smallDesktop) {
+    //   transform: skewX(-46deg) translateX(117%);
+    //   width:     49%;
+    // }
   }
 
   .accentTwo {
-    width:      56%;
+    width:      75%;
     min-height: 100vh;
-    transform:  skewX(30deg) translateX(-57%);
+    transform:  skewX(30deg) translateX(-62%);
     box-shadow: $nav-bar-shadow;
     position:   absolute;
     transition: transform 250ms linear;
-    @include background-gradient($brand-accent, $brand-light-primary, -171deg);
+    @include background-gradient($brand-dark-primary, $brand-primary, -171deg);
 
-    @include media(tabletPortrait) {
-      transform: skewX(37deg) translateX(-29%);
-    }
-
-    @include media(tabletLandscape) {
-      transform: skewX(38deg) translateX(-29%);
-    }
-
-    @include media(smallDesktop) {
-      transform: skewX(38deg) translateX(-19%);
-      width:     49%;
-    }
+    // @include media(tabletPortrait) {
+    //   transform: skewX(37deg) translateX(-29%);
+    // }
+    //
+    // @include media(tabletLandscape) {
+    //   transform: skewX(38deg) translateX(-29%);
+    // }
+    //
+    // @include media(smallDesktop) {
+    //   transform: skewX(38deg) translateX(-19%);
+    //   width:     49%;
+    // }
   }
 
   .canvas {
@@ -142,33 +135,50 @@
     top:              0;
   }
 
+  .textBlock {
+    position: relative;
+    align-items: center;
+    vertical-align: middle;
+    top: 40%;
+    text-align: center;
+  }
+
   .title, .subTitle, .github {
-    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.33);
-    position:    relative;
+    // text-shadow: 0 5px 10px rgba(0, 0, 0, 0.33);
+    // position:    relative;
+  }
+
+  .mainTitle {
+    font-family: $font-family-headings;
+    font-size: 8rem;
+    font-weight: 700;
+    letter-spacing: .5rem;
+    // top: $space-unit * 17;
+
+    // @include media(tabletPortrait) {
+    //   top: $space-unit * 24;
+    // }
+    //
+    // @include media(tabletLandscape) {
+    //   top: $space-unit * 26;
+    // }
   }
 
   .title {
-    top: $space-unit * 17;
-
-    @include media(tabletPortrait) {
-      top: $space-unit * 24;
-    }
-
-    @include media(tabletLandscape) {
-      top: $space-unit * 26;
-    }
+    font-family: $font-family;
+    // top: $space-unit * 15;
+    //
+    // @include media(tabletPortrait) {
+    //   top: $space-unit * 22;
+    // }
+    //
+    // @include media(tabletLandscape) {
+    //   top: $space-unit * 24;
+    // }
   }
 
   .subTitle {
-    top: $space-unit * 15;
-
-    @include media(tabletPortrait) {
-      top: $space-unit * 22;
-    }
-
-    @include media(tabletLandscape) {
-      top: $space-unit * 24;
-    }
+    font-family: $font-cursive;
   }
 
   .github {

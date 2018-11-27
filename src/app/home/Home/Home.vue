@@ -2,10 +2,10 @@
   <div :class="$style.home">
     <stage
       :disable-particles="disableParticles" />
-    <dev-ex />
+    <!-- <dev-ex />
     <enterprise-ready />
     <user-experience />
-    <quick-start />
+    <quick-start /> -->
   </div>
 </template>
 
@@ -20,7 +20,7 @@
 
   export default {
     metaInfo:   {
-      title: 'vue-starter - flexible, scalable, opinionated, fast',
+      title: 'John McGuinness: Developer',
       meta:  [
         {
           name:    'description',
@@ -84,7 +84,7 @@
 
   .home {
     h2 {
-      text-shadow: 0 5px 10px rgba(0, 0, 0, 0.33);
+      // text-shadow: 0 5px 10px rgba(0, 0, 0, 0.33);
     }
 
     :global {

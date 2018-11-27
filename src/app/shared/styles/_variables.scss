@@ -1,18 +1,18 @@
 /* Brand */
-$brand-dark-primary: #7966F3;
-$brand-light-primary: #9B9BFD;
-$brand-primary: #A851E2;
-$brand-accent: #17BEBB;
-$brand-warn: #FB3640;
+$brand-dark-primary: #2E1114;
+$brand-light-primary: #ADADAD;
+$brand-primary: #501B1D;
+$brand-accent: #65585C;
+$brand-warn: #2E1114;
 
 /* Background Colors */
-$bg-color: #333;
-$bg-color-inverse: #FFF;
+$bg-color: #FFF;
+$bg-color-inverse: #000;
 
 /* Text Colors */
-$text-color: #FFF;
-$text-color-inverse: #333;
-$secondary-text-color: #BABABA;
+$text-color: #000;
+$text-color-inverse: #FFF;
+$secondary-text-color: #501B1D;
 
 /* Border Colors */
 $divider-color: lighten($bg-color, 20%);
@@ -61,9 +61,10 @@ $letter-spacing-h5: -.05rem;
 $letter-spacing-h6: -.1rem;
 
 /* General */
-$google-font: 'https://fonts.googleapis.com/css?family=Oxygen:300,400,700|Lato:300,400,700';
-$font-family-headings: 'Oxygen', Helvetica, sans-serif;
-$font-family: 'Lato', Helvetica, sans-serif;
+$google-font: 'https://fonts.googleapis.com/css?family=Montserrat|Parisienne|Playfair+Display:300,400,700';
+$font-family-headings: 'Playfair Display', Times, sans-serif;
+$font-family: 'Montserrat', Helvetica, sans-serif;
+$font-cursive: 'Parisiene', 'Snell Roundhand','cursive';
 $space-unit: 0.8rem;
 
 /* Animations */

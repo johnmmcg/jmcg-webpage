@@ -54,14 +54,6 @@
     <router-view :class="$style.content" />
 
     <!-- <vue-footer /> -->
-
-    <vue-cookie-consent
-      current-version="1.0.0"
-      :cookie-consent-version="cookieConsentVersion"
-      :set-cookie-consent-version="setCookieConsentVersion">
-      This is a cookie consent component which shows the cookie consent every time you change the version of the
-      consent.
-    </vue-cookie-consent>
   </div>
 </template>
 
