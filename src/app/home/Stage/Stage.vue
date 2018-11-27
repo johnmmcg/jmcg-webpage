@@ -9,6 +9,7 @@
         <vue-grid-item class="vueGridItem">
           <h1 :class="$style.title">vue-starter</h1>
           <h2 :class="$style.title">John McGuinness</h2>
+          <p>Testing Page 1234</p>
           <div :class="$style.subTitle">
             {{
             $t('App.core.description' /* A flexible, scalable, opinionated boilerplate for production-ready PWAs with
