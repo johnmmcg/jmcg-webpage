@@ -11,8 +11,8 @@
             <h1 :class="$style.mainTitle">John McGuinness</h1>
             <h2 :class="$style.title">Front End Web Developer</h2>
             <h3 :class="$style.subTitle">Philadelphia, Pennsylvania</h3>
-            <div :class="$style.subTitle">
-              <p>This is a test</p>
+            <div :class="$style.title">
+              <p>[more comming soon]</p>
             </div>
           </div>
         </vue-grid-item>
