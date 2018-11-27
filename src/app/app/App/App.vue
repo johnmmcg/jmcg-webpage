@@ -1,10 +1,10 @@
 <template>
   <div id="app" :class="$style.app">
-    <vue-notification-stack />
+    <!-- <vue-notification-stack /> -->
 
-    <vue-navigation-progress :is-navigating="isNavigating" />
+    <!-- <vue-navigation-progress :is-navigating="isNavigating" /> -->
 
-    <vue-nav-bar>
+    <!-- <vue-nav-bar>
       <ul :class="$style.nav">
         <li>
           <a href="/docs" @click.native="navBarClose">
@@ -49,11 +49,11 @@
           </a>
         </li>
       </ul>
-    </vue-nav-bar>
+    </vue-nav-bar> -->
 
     <router-view :class="$style.content" />
 
-    <vue-footer />
+    <!-- <vue-footer /> -->
 
     <vue-cookie-consent
       current-version="1.0.0"
