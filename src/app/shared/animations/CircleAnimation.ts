@@ -32,12 +32,12 @@ class Circle {
 
     this.context.closePath();
 
-    this.context.fillStyle = 'rgba(255, 255, 255,' + this.opacity + ')';
+    this.context.fillStyle = 'rgba(80, 27, 29,' + this.opacity + ')';
     this.context.fill();
 
     if (this.opacity <= 0) {
       this.counter = 0;
-      this.opacity = random(0.05, 0.9);
+      this.opacity = random(0.1, 0.6);
       this.width = randomInt(2, 10);
       this.speed = random(0.1, 1);
     }
@@ -76,7 +76,7 @@ const draw = (canvas: HTMLCanvasElement | any, context: CanvasRenderingContext2D
 
 export const CircleAnimation = (canvas: HTMLCanvasElement | any): any => {
   const context: CanvasRenderingContext2D | any = canvas.getContext('2d');
-  const circleCount: number = 50;
+  const circleCount: number = 25;
   const circles: Circle[] = getCircles(circleCount, canvas, context);
 
   if (context) {

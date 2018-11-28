@@ -14,7 +14,10 @@
         <vue-grid-row>
           <vue-grid-item class="vueGridItem">
             <div :class="$style.textBlock">
-              <h1 :class="$style.mainTitle" class="animated fade">John McGuinness</h1>
+              <div :class="$style.topLeftBorder"></div>
+              <div :class="$style.BottomRightBorder"></div>
+
+              <h1 :class="mainTitle" class="animated fade">John McGuinness</h1>
               <h2 :class="$style.title">Front End Web Developer</h2>
               <h3 :class="$style.subTitle">Philadelphia, Pennsylvania</h3>
               <div :class="$style.message">
@@ -47,9 +50,21 @@
     data() {
       return {
         active: false,
+        mainTitleLoaded: false,
       };
     },
-    computed:   {},
+    computed:   {
+      mainTitle() {
+        const classes = [this.$style.mainTitle];
+
+        if (this.mainTitleLoaded) {
+          classes.push(this.$style.mainTitleLoaded);
+        }
+
+        return classes;
+      },
+
+    },
     methods:    {
       handleResize() {
         const canvas: HTMLCanvasElement = this.$refs.canvas;
@@ -70,13 +85,17 @@
       this.handleResize();
 
       if (!this.disableParticles) {
-        // CircleAnimation(this.$refs.canvas);
+        CircleAnimation(this.$refs.canvas);
       }
 
       const self = this;
 
       setTimeout((event) => {
         self.active = true;
+      }, 1000);
+
+      setTimeout((event) => {
+        self.mainTitleLoaded = true;
       }, 2000);
 
     },
@@ -153,11 +172,13 @@
   }
 
   .textBlock {
+    width: auto;
     position: relative;
     align-items: center;
     vertical-align: middle;
     top: 40%;
     text-align: center;
+    padding: .25rem;
   }
 
   .mainTitle {
@@ -165,51 +186,65 @@
     font-size: 8rem;
     font-weight: 700;
     letter-spacing: .5rem;
-    transition: .2s linear;
-
+    padding: .5rem 1rem;
+    margin-top: .25rem;
+    width: auto;
+    display: inline-block;
+    color: $text-color-inverse;
+    background-image: linear-gradient(120deg, $brand-primary 0%, $brand-accent 70%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.1em;
+    background-position: 50% 88%;
+    animation: mainTitleEntry 10s ease-in-out;
+    transition: all 0.25s ease-in;
     // top: $space-unit * 17;
 
-    // @include media(tabletPortrait) {
-    //   top: $space-unit * 24;
-    // }
-    //
-    // @include media(tabletLandscape) {
-    //   top: $space-unit * 26;
-    // }
+    @media screen and (max-width: $screen-phone-max) {
+      font-size: 4rem;
+    }
   }
 
-  @keyframes fadeIn {
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
+  .mainTitleLoaded {
+    font-size: 8rem;
+    letter-spacing: .5rem;
+    margin-top: .25rem;
+    padding: .5rem 1rem;
+    background-image: linear-gradient(120deg, $brand-primary 0%, $brand-accent 70%);
+    background-position: 100% 88%;
+    background-size: 100% 88%;
+    transition: all 0.25s ease-in;
+
+    @media screen and (max-width: $screen-phone) {
+      font-size: 4rem;
     }
   }
 
   .title {
     font-family: $font-family;
     transition: .2s linear;
-    // top: $space-unit * 15;
-    //
-    // @include media(tabletPortrait) {
-    //   top: $space-unit * 22;
-    // }
-    //
-    // @include media(tabletLandscape) {
-    //   top: $space-unit * 24;
-    // }
 
+    @include media(phone) {
+      font-size: 2.5rem;
+      margin: auto 1rem;
+    }
   }
 
 
   .subTitle {
     font-family: $font-cursive;
+    @include media(phone) {
+      font-size: 2.5rem;
+      margin: auto 2rem;
+    }
   }
 
   .message {
     font-family: $font-family;
     transition: .2s linear;
+    @include media(phone) {
+      font-size: 1.5rem;
+      margin: auto 2rem;
+    }
   }
 
   .github {
@@ -251,5 +286,57 @@
 
   .enter, .leaveTo {
     opacity: 0;
+  }
+
+  @keyframes mainTitleEntry {
+    0% {
+      font-family: $font-family-headings;
+      font-weight: 700;
+      padding: .5rem 1rem;
+      width: auto;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-size: 0% 0.1em;
+      background-position: 50% 88%;
+      transition: all 0.25s ease-out;
+    }
+
+    5% {
+      background-size: 100% 0.1em;
+      background-position: 0% 88%;
+    }
+
+    8% {
+      background-position: 100% 88%;
+      background-size: 100% 88%;
+    }
+
+    100% {
+      background-position: 100% 88%;
+      background-size: 100% 88%;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.05)
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeIn {
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 </style>
