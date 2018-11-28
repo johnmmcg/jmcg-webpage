@@ -34,7 +34,7 @@
   .gridItem {
     flex-basis: 100%;
     padding:    0 $screen-phone-gutter;
-    min-width:  $screen-phone - ($screen-phone-gutter * 2);
+    min-width:  none;
 
     @include media(tabletPortrait) {
       flex:    1;

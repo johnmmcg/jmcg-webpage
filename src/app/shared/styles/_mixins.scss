@@ -38,9 +38,9 @@ $grid-breakpoints: (
                      smallDesktop: $screen-small-desktop,
                      largeDesktop: $screen-large-desktop
                    );
-@mixin media($breakpoint-name) {
+@mixin media($breakpoint-name, $type: min) {
   @if map-has-key($grid-breakpoints, $breakpoint-name) {
-    @media (min-width: #{map_get($grid-breakpoints, $breakpoint-name)}) {
+    @media (#{$type}-width: #{map_get($grid-breakpoints, $breakpoint-name)}) {
       @content;
     }
   } @else {

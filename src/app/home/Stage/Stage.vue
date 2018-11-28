@@ -1,15 +1,12 @@
 <template>
   <div :class="$style.stage" ref="stage">
+  <!-- Canvas for Circle Animation -->
     <canvas :class="$style.canvas" ref="canvas"></canvas>
+    </fade-animation>
     <!-- <div :class="$style.accent"></div>
     <div :class="$style.accentTwo"></div> -->
-    <transition
-      :enter-class="$style.enter"
-      :enter-active-class="$style.enterActive"
-      :enter-to-class="$style.enterTo"
-      :leave-class="$style.leave"
-      :leave-active-class="$style.leaveActive"
-      :leave-to-class="$style.leaveTo">
+  <!-- Text Grid -->
+    <fade-animation>
       <vue-grid v-if="active">
         <vue-grid-row>
           <vue-grid-item class="vueGridItem">
@@ -20,14 +17,67 @@
               <h1 :class="mainTitle" class="animated fade">John McGuinness</h1>
               <h2 :class="$style.title">Front End Web Developer</h2>
               <h3 :class="$style.subTitle">Philadelphia, Pennsylvania</h3>
-              <div :class="$style.message">
-                <p>[more comming soon]</p>
-              </div>
             </div>
           </vue-grid-item>
         </vue-grid-row>
       </vue-grid>
-    </transition>
+    </fade-animation>
+  <!-- Links Grid -->
+    <vue-grid>
+      <vue-grid-row>
+        <vue-grid-item>
+          <slide-up-animation>
+            <h4 v-if="linkOneLoaded">
+              <a href="https://www.linkedin.com/in/johnmmcg/"
+              target="_blank"
+              title="Click to visit my LinkedIn Profile">
+                LinkedIn
+              </a>
+            </h4>
+          </slide-up-animation>
+        </vue-grid-item>
+        <vue-grid-item>
+          <slide-up-animation>
+            <h4 v-if="linkTwoLoaded">
+              <a
+                href="https://codepen.io/johnmmcg/"
+                target="_blank"
+                title="Click to visit my CodePen Profile">
+                CodePen
+              </a>
+            </h4>
+          </slide-up-animation>
+        </vue-grid-item>
+        <vue-grid-item>
+          <slide-up-animation>
+            <h4 v-if="linkThreeLoaded">
+              <a
+                href="https://github.com/johnmmcg"
+                target="_blank"
+                title="Click to visit my GitHub Profile">
+                GitHub
+              </a>
+            </h4>
+          </slide-up-animation>
+        </vue-grid-item>
+      </vue-grid-row>
+    </vue-grid>
+  <!-- More Comming Soon -->
+    <div :class="$style.bottomMessageContainer">
+      <vue-grid>
+        <vue-grid-row>
+          <vue-grid-item>
+            <fade-animation>
+              <div
+                v-if="moreMessageLoaded"
+                :class="$style.message">
+                <p>[more comming soon]</p>
+              </div>
+            </fade-animation>
+          </vue-grid-item>
+        </vue-grid-row>
+      </vue-grid>
+    </div>
   </div>
 </template>
 
@@ -38,9 +88,10 @@
   import VueGridItem         from '../../shared/components/VueGridItem/VueGridItem.vue';
   import VueIconGithub       from '../../shared/components/icons/VueIconGithub/VueIconGithub.vue';
   import FadeAnimation from '../../shared/animations/FadeAnimation/FadeAnimation.vue';
+  import SlideUpAnimation from '../../shared/animations/SlideUpAnimation/SlideUpAnimation.vue';
 
   export default {
-    components: { VueIconGithub, VueGridItem, VueGridRow, VueGrid, FadeAnimation },
+    components: { VueIconGithub, VueGridItem, VueGridRow, VueGrid, FadeAnimation, SlideUpAnimation },
     props:      {
       disableParticles: {
         type:     Boolean,
@@ -51,6 +102,10 @@
       return {
         active: false,
         mainTitleLoaded: false,
+        linkOneLoaded: false,
+        linkTwoLoaded: false,
+        linkThreeLoaded: false,
+        moreMessageLoaded: false,
       };
     },
     computed:   {
@@ -92,10 +147,24 @@
 
       setTimeout((event) => {
         self.active = true;
+      }, 500);
+
+      setTimeout((event) => {
+        self.linkOneLoaded = true;
+        self.mainTitleLoaded = true;
+
       }, 1000);
 
       setTimeout((event) => {
-        self.mainTitleLoaded = true;
+        self.linkTwoLoaded = true;
+      }, 1250);
+
+      setTimeout((event) => {
+        self.linkThreeLoaded = true;
+      }, 1500);
+
+      setTimeout((event) => {
+        self.moreMessageLoaded = true;
       }, 2000);
 
     },
@@ -173,10 +242,9 @@
 
   .textBlock {
     width: auto;
-    position: relative;
     align-items: center;
     vertical-align: middle;
-    top: 40%;
+    margin-top: 10%;
     text-align: center;
     padding: .25rem;
   }
@@ -214,34 +282,45 @@
     background-size: 100% 88%;
     transition: all 0.25s ease-in;
 
-    @media screen and (max-width: $screen-phone) {
-      font-size: 4rem;
+    @include media(phone, max) {
+      font-size: 2.5rem;
     }
   }
 
   .title {
     font-family: $font-family;
+    margin: .75rem;
     transition: .2s linear;
 
-    @include media(phone) {
-      font-size: 2.5rem;
-      margin: auto 1rem;
+    @include media(phone, max) {
+      font-size: 2rem;
+      margin: auto .5rem;
     }
   }
 
 
   .subTitle {
     font-family: $font-cursive;
-    @include media(phone) {
-      font-size: 2.5rem;
-      margin: auto 2rem;
+    margin: 1rem;
+
+    @include media(phone, max) {
+      font-size: 2rem;
+      margin: auto 1rem;
     }
+  }
+
+  .bottomMessageContainer {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 
   .message {
     font-family: $font-family;
     transition: .2s linear;
-    @include media(phone) {
+    @include media(phone, max) {
       font-size: 1.5rem;
       margin: auto 2rem;
     }
@@ -274,18 +353,6 @@
       height: $font-size-h1;
       width:  $font-size-h1;
     }
-  }
-
-  .enterActive, .leaveActive {
-    transition: $fade-animation-transition;
-  }
-
-  .enterTo, .leave {
-    opacity: 1;
-  }
-
-  .enter, .leaveTo {
-    opacity: 0;
   }
 
   @keyframes mainTitleEntry {
