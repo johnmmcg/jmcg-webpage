@@ -27,37 +27,56 @@
       <vue-grid-row>
         <vue-grid-item>
           <slide-up-animation>
-            <h4 v-if="linkOneLoaded">
-              <a href="https://www.linkedin.com/in/johnmmcg/"
-              target="_blank"
-              title="Click to visit my LinkedIn Profile">
-                LinkedIn
-              </a>
-            </h4>
+            <div
+              v-if="linkOneLoaded">
+              <div :class="$style.linkContainer">
+                <a href="https://www.linkedin.com/in/johnmmcg/"
+                target="_blank"
+                title="Click to visit my LinkedIn Profile">
+                  <span :class="$style.icon">
+                    <font-awesome-icon :icon="['fab', 'linkedin']" />
+                  </span>
+                  <p :class="$style.linkTitle">LinkedIn</p>
+                </a>
+              </div>
+            </div>
           </slide-up-animation>
         </vue-grid-item>
         <vue-grid-item>
           <slide-up-animation>
-            <h4 v-if="linkTwoLoaded">
-              <a
-                href="https://codepen.io/johnmmcg/"
-                target="_blank"
-                title="Click to visit my CodePen Profile">
-                CodePen
-              </a>
-            </h4>
+            <div
+              v-if="linkTwoLoaded">
+              <div :class="$style.linkContainer">
+                <a
+                  href="https://codepen.io/johnmmcg/"
+                  target="_blank"
+                  title="Click to visit my CodePen Profile">
+                  <span :class="$style.icon">
+                    <font-awesome-icon :icon="['fab', 'codepen']" />
+                  </span>
+                  <p :class="$style.linkTitle">CodePen</p>
+                </a>
+              </div>
+            </div>
           </slide-up-animation>
         </vue-grid-item>
         <vue-grid-item>
           <slide-up-animation>
-            <h4 v-if="linkThreeLoaded">
-              <a
-                href="https://github.com/johnmmcg"
-                target="_blank"
-                title="Click to visit my GitHub Profile">
-                GitHub
-              </a>
-            </h4>
+            <div
+              v-if="linkThreeLoaded">
+              <div
+              :class="$style.linkContainer">
+                <a
+                  href="https://github.com/johnmmcg"
+                  target="_blank"
+                  title="Click to visit my GitHub Profile">
+                  <span :class="$style.icon">
+                    <font-awesome-icon :icon="['fab', 'github']" />
+                  </span>
+                  <p :class="$style.linkTitle">GitHub</p>
+                </a>
+              </div>
+            </div>
           </slide-up-animation>
         </vue-grid-item>
       </vue-grid-row>
@@ -91,7 +110,14 @@
   import SlideUpAnimation from '../../shared/animations/SlideUpAnimation/SlideUpAnimation.vue';
 
   export default {
-    components: { VueIconGithub, VueGridItem, VueGridRow, VueGrid, FadeAnimation, SlideUpAnimation },
+    components: {
+      VueIconGithub,
+      VueGridItem,
+      VueGridRow,
+      VueGrid,
+      FadeAnimation,
+      SlideUpAnimation,
+    },
     props:      {
       disableParticles: {
         type:     Boolean,
@@ -279,7 +305,7 @@
     padding: .5rem 1rem;
     background-image: linear-gradient(120deg, $brand-primary 0%, $brand-accent 70%);
     background-position: 100% 88%;
-    background-size: 100% 88%;
+    background-size: 100% 95%;
     transition: all 0.25s ease-in;
 
     @include media(phone, max) {
@@ -306,6 +332,62 @@
     @include media(phone, max) {
       font-size: 2rem;
       margin: auto 1rem;
+    }
+  }
+
+  .linkContainer {
+    background: transparent;
+    display: inline-block;
+    width: auto;
+    padding: 0;
+    margin-top: 1rem;
+    // border: 4px solid transparent;
+    cursor: pointer;
+    transition: .25s ease-in-out;
+
+    a {
+      text-decoration: none;
+      
+      span {
+        width: 100%;
+        height: 100%;
+        min-width: 100px;
+        min-height: 100px;
+        vertical-align: middle;
+        // padding-top: 17px;
+        display: inline-block;
+        background: $brand-primary;
+        color: $text-color-inverse;
+        font-size: 5.5rem;
+        padding: .25rem;
+        border: 4px solid transparent;
+        transition: .2s ease-in-out;
+      }
+    }
+
+    &:hover {
+      // border: 4px solid $brand-light-primary;
+      border-radius: 100%;
+
+      a {
+        span {
+          background: $bg-color;
+          border-radius: 100%;
+          border: 4px solid $brand-accent;
+          color: $brand-primary;
+        }
+      }
+    }
+
+
+  }
+
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
     }
   }
 
@@ -375,12 +457,12 @@
 
     8% {
       background-position: 100% 88%;
-      background-size: 100% 88%;
+      background-size: 100% 95%;
     }
 
     100% {
       background-position: 100% 88%;
-      background-size: 100% 88%;
+      background-size: 100% 95%;
     }
   }
 
