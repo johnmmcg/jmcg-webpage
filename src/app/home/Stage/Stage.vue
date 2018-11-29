@@ -9,7 +9,7 @@
     <fade-animation>
       <vue-grid v-if="active">
         <vue-grid-row>
-          <vue-grid-item class="vueGridItem">
+          <vue-grid-item :class="$style.vueGridItem">
             <div :class="$style.textBlock">
               <div :class="mainTitle">
                 <h1>John McGuinness</h1>
@@ -276,6 +276,10 @@
     top:              0;
   }
 
+  .vueGridItem {
+    padding: 0;
+  }
+
   .textBlock {
     width: auto;
     align-items: center;
@@ -296,6 +300,10 @@
     animation: mainTitleEntry 5s ease-in-out;
     transition: all 0.25s ease-in;
 
+    @include media(tabletPortrait, max) {
+      padding: .25rem;
+    }
+
     h1 {
       font-family: $font-family-headings;
       font-weight: 700;
@@ -308,7 +316,7 @@
       color: $text-color-inverse;
 
       @include media(tabletPortrait, max) {
-        font-size: 4rem;
+        font-size: 2rem;
       }
     }
   }
@@ -319,6 +327,10 @@
     background-position: 100% 88%;
     background-size: 100%;
     transition: all 0.25s ease-in;
+
+    @include media(tabletPortrait, max) {
+      padding: .25rem;
+    }
 
     h1 {
       font-family: $font-family-headings;
@@ -334,7 +346,8 @@
       transition: .25s linear;
 
       @include media(tabletPortrait, max) {
-        font-size: 4rem;
+        font-size: 2rem;
+        padding: 1rem;
       }
     }
   }
@@ -346,11 +359,7 @@
     transition: .2s linear;
 
     @include media(tabletPortrait, max) {
-      font-size: 3rem;
-    }
-
-    @include media(tabletPortrait, max) {
-      font-size: 2.5rem;
+      font-size: 1.5rem;
     }
   }
 
@@ -366,7 +375,7 @@
       word-spacing: 30px;
 
       @include media(tabletPortrait, max) {
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
     }
 
@@ -378,8 +387,8 @@
       left: 46%;
 
       @include media(tabletPortrait, max) {
-        width: 12px;
-        top: 10px
+        width: 10px;
+        top: 6px
       }
     }
   }
