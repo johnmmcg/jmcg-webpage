@@ -1,7 +1,7 @@
 import { random, randomInt } from '../utils/misc';
 
 class Circle {
-  private opacity: number = random(0.05, 0.9);
+  private opacity: number = random(0.1, 0.6);
   private counter: number = 0;
   private direction: number = 0;
 

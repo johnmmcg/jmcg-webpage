@@ -16,71 +16,82 @@
 
               <h1 :class="mainTitle" class="animated fade">John McGuinness</h1>
               <h2 :class="$style.title">Front End Web Developer</h2>
-              <h3 :class="$style.subTitle">Philadelphia, Pennsylvania</h3>
+              <div :class="$style.locationContainer">
+                <h3 :class="$style.subTitle">Philadelphia    Pennsylvania</h3>
+                <img :class="$style.keystone" src="/keystone.png" alt="">
+              </div>
             </div>
           </vue-grid-item>
         </vue-grid-row>
       </vue-grid>
     </fade-animation>
   <!-- Links Grid -->
-    <vue-grid>
-      <vue-grid-row>
-        <vue-grid-item>
-          <slide-up-animation>
-            <div
-              v-if="linkOneLoaded">
-              <div :class="$style.linkContainer">
-                <a href="https://www.linkedin.com/in/johnmmcg/"
-                target="_blank"
-                title="Click to visit my LinkedIn Profile">
-                  <span :class="$style.icon">
-                    <font-awesome-icon :icon="['fab', 'linkedin']" />
-                  </span>
-                  <p :class="$style.linkTitle">LinkedIn</p>
-                </a>
-              </div>
-            </div>
-          </slide-up-animation>
-        </vue-grid-item>
-        <vue-grid-item>
-          <slide-up-animation>
-            <div
-              v-if="linkTwoLoaded">
-              <div :class="$style.linkContainer">
-                <a
-                  href="https://codepen.io/johnmmcg/"
-                  target="_blank"
-                  title="Click to visit my CodePen Profile">
-                  <span :class="$style.icon">
-                    <font-awesome-icon :icon="['fab', 'codepen']" />
-                  </span>
-                  <p :class="$style.linkTitle">CodePen</p>
-                </a>
-              </div>
-            </div>
-          </slide-up-animation>
-        </vue-grid-item>
-        <vue-grid-item>
-          <slide-up-animation>
-            <div
-              v-if="linkThreeLoaded">
+    <div :class="$style.linksContainer">
+      <vue-grid>
+        <vue-grid-row>
+          <vue-grid-item>
+            <slide-up-animation>
               <div
-              :class="$style.linkContainer">
-                <a
-                  href="https://github.com/johnmmcg"
-                  target="_blank"
-                  title="Click to visit my GitHub Profile">
-                  <span :class="$style.icon">
-                    <font-awesome-icon :icon="['fab', 'github']" />
-                  </span>
-                  <p :class="$style.linkTitle">GitHub</p>
-                </a>
+                v-if="linkOneLoaded">
+                <div :class="$style.linkContainer">
+                  <a href="https://www.linkedin.com/in/johnmmcg/"
+                  target="_blank">
+                    <span :class="$style.icon">
+                      <font-awesome-icon :icon="['fab', 'linkedin']" />
+                    </span>
+                    <p :class="$style.linkTitle"
+                      title="Click to visit my LinkedIn Profile">
+                      LinkedIn
+                    </p>
+                  </a>
+                </div>
               </div>
-            </div>
-          </slide-up-animation>
-        </vue-grid-item>
-      </vue-grid-row>
-    </vue-grid>
+            </slide-up-animation>
+          </vue-grid-item>
+          <vue-grid-item>
+            <slide-up-animation>
+              <div
+                v-if="linkTwoLoaded">
+                <div :class="$style.linkContainer">
+                  <a
+                    href="https://codepen.io/johnmmcg/"
+                    target="_blank">
+                    <span :class="$style.icon">
+                      <font-awesome-icon :icon="['fab', 'codepen']" />
+                    </span>
+                    <p :class="$style.linkTitle"
+                      title="Click to visit my CodePen Profile">
+                      CodePen
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </slide-up-animation>
+          </vue-grid-item>
+          <vue-grid-item>
+            <slide-up-animation>
+              <div
+                v-if="linkThreeLoaded">
+                <div
+                :class="$style.linkContainer">
+                  <a
+                    href="https://github.com/johnmmcg"
+                    target="_blank">
+                    <span :class="$style.icon">
+                      <font-awesome-icon :icon="['fab', 'github']" />
+                    </span>
+                    <p :class="$style.linkTitle"
+                      title="Click to visit my GitHub Profile">
+                      GitHub
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </slide-up-animation>
+          </vue-grid-item>
+        </vue-grid-row>
+      </vue-grid>
+    </div>
   <!-- More Comming Soon -->
     <div :class="$style.bottomMessageContainer">
       <vue-grid>
@@ -277,8 +288,8 @@
 
   .mainTitle {
     font-family: $font-family-headings;
-    font-size: 8rem;
     font-weight: 700;
+    font-size: 8rem;
     letter-spacing: .5rem;
     padding: .5rem 1rem;
     margin-top: .25rem;
@@ -291,9 +302,8 @@
     background-position: 50% 88%;
     animation: mainTitleEntry 10s ease-in-out;
     transition: all 0.25s ease-in;
-    // top: $space-unit * 17;
 
-    @media screen and (max-width: $screen-phone-max) {
+    @include media(tabletPortrait, max) {
       font-size: 4rem;
     }
   }
@@ -308,31 +318,59 @@
     background-size: 100% 95%;
     transition: all 0.25s ease-in;
 
-    @include media(phone, max) {
-      font-size: 2.5rem;
+    @include media(tabletPortrait, max) {
+      font-size: 4rem;
     }
   }
 
   .title {
     font-family: $font-family;
-    margin: .75rem;
+    margin: .25rem;
+    font-size: 4rem;
     transition: .2s linear;
 
-    @include media(phone, max) {
-      font-size: 2rem;
-      margin: auto .5rem;
+    @include media(tabletPortrait, max) {
+      font-size: 3rem;
+    }
+
+    @include media(tabletPortrait, max) {
+      font-size: 2.5rem;
     }
   }
 
+  .locationContainer {
+    position: relative;
+    display: inline-block;
+    width: auto;
 
-  .subTitle {
-    font-family: $font-cursive;
-    margin: 1rem;
+    .subTitle {
+      font-family: $font-cursive;
+      font-size: 3rem;
+      margin: 0rem;
+      word-spacing: 30px;
 
-    @include media(phone, max) {
-      font-size: 2rem;
-      margin: auto 1rem;
+      @include media(tabletPortrait, max) {
+        font-size: 2rem;
+      }
     }
+
+    .keystone {
+      position: absolute;
+      width: 20px;
+      height: auto;
+      top: 15px;
+      left: 46%;
+
+      @include media(tabletPortrait, max) {
+        width: 12px;
+        top: 10px
+      }
+    }
+  }
+
+  .linksContainer {
+    padding-bottom: 6rem;
+    height: auto;
   }
 
   .linkContainer {
@@ -346,35 +384,110 @@
     transition: .25s ease-in-out;
 
     a {
+      width: 100%;
+      text-align: center;
       text-decoration: none;
-      
+
+      .linkTitle {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-weight: normal;
+        transition: .15s linear;
+      }
+
       span {
         width: 100%;
         height: 100%;
         min-width: 100px;
         min-height: 100px;
         vertical-align: middle;
-        // padding-top: 17px;
         display: inline-block;
         background: $brand-primary;
         color: $text-color-inverse;
         font-size: 5.5rem;
         padding: .25rem;
         border: 4px solid transparent;
+        position: relative;
         transition: .2s ease-in-out;
+
+        &::before {
+          position: absolute;
+          content: '';
+          width: 0%;
+          height: 0%;
+          background: transparent;
+          left: 50%;
+          top: 50%;
+          padding: .25rem;
+          margin: auto;
+          border: 2px solid transparent;
+          border-radius: 0%;
+          transition: .15s linear;
+        }
+
+        &::after {
+          position: absolute;
+          content: '';
+          width: 0;
+          height: 0;
+          background: transparent;
+          left: 50%;
+          top: 50%;
+          padding: .25rem;
+          margin: auto;
+          border: 2px solid transparent;
+          border-radius: 100%;
+          transition: .15s linear;
+        }
       }
     }
 
     &:hover {
-      // border: 4px solid $brand-light-primary;
       border-radius: 100%;
 
       a {
+        .linkTitle {
+          font-weight: bold;
+        }
+
         span {
           background: $bg-color;
           border-radius: 100%;
           border: 4px solid $brand-accent;
           color: $brand-primary;
+          position: relative;
+
+          &::before {
+            position: absolute;
+            content: '';
+            width: 112px;
+            height: 112px;
+            background: transparent;
+            left: -10px;
+            top: -10px;
+            padding: .25rem;
+            margin: auto;
+            border: 2px solid $bg-color-inverse;
+            border-right: 2px solid transparent;
+            animation: spinCW 4s linear infinite;
+            border-radius: 100%;
+          }
+
+          &::after {
+            position: absolute;
+            content: '';
+            width: 124px;
+            height: 124px;
+            background: transparent;
+            left: -16px;
+            top: -16px;
+            padding: .25rem;
+            margin: auto;
+            border: 2px solid $brand-accent;
+            border-top: 2px solid transparent;
+            animation: spinCCW 6s linear infinite;
+            border-radius: 100%;
+          }
         }
       }
     }
@@ -382,12 +495,23 @@
 
   }
 
-  @keyframes spinner {
+  // clockwise
+  @keyframes spinCW {
     0% {
       transform: rotate(0deg);
     }
     100%{
-      transform: rotate(360deg);
+      transform: rotate(720deg);
+    }
+  }
+
+  // counter-clockwise
+  @keyframes spinCCW {
+    0% {
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(-720deg);
     }
   }
 

@@ -49,9 +49,9 @@ $grid-breakpoints: (
 }
 
 @mixin pseudo($display: block, $pos: absolute, $content: '') {
-    content: $content;
-    display: $display;
-    position: $pos;
+  content: $content;
+  display: $display;
+  position: $pos;
 }
 
 @mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false){
