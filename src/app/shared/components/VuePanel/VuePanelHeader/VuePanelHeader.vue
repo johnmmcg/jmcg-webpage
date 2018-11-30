@@ -66,7 +66,8 @@
     }
 
     .title {
-      font-size:   $panel-header-title-font-size;
+      font-family: $font-family;
+      font-size:   3.5rem;
       font-weight: $panel-header-title-font-weight;
       display:     block;
     }

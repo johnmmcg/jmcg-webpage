@@ -2,8 +2,11 @@
   <div :class="$style.home">
     <stage
       :disable-particles="disableParticles" />
-    <!-- <dev-ex />
-    <enterprise-ready />
+
+    <about />
+
+    <!-- <dev-ex /> -->
+    <!-- <enterprise-ready />
     <user-experience />
     <quick-start /> -->
   </div>
@@ -12,6 +15,7 @@
 <script lang="ts">
   import { mapState }    from 'vuex';
   import Stage           from '../Stage/Stage.vue';
+  import About           from '../About/About.vue';
   import DevEx           from '../DevEx/DevEx.vue';
   import EnterpriseReady from '../EnterpriseReady/EnterpriseReady.vue';
   import UserExperience  from '../UserExperience/UserExperience.vue';
@@ -24,7 +28,7 @@
       meta:  [
         {
           name:    'description',
-          content: 'vue-starter - A flexible, scalable, opinionated boilerplate for production-ready PWAs with focus on performance, development speed, and best practices',
+          content: 'John McGuinness - Front End Web Devloper - Philadelphia, PA',
         },
         {
           name:    'robots',
@@ -32,40 +36,41 @@
         },
         {
           name:    'keywords',
-          content: 'vue.js, vuex, vuex-persist, seo, server-side-rendering, isomorphic, progressive-web-app',
+          content: 'john, mcguinness, john-mcguinness, frontend, front-end, developer, web-developer, vue.js, vuex, vuex-persist, seo, server-side-rendering, isomorphic, progressive-web-app',
         },
 
-        { name: 'og:url', content: 'https://vue-starter.herokuapp.com/' },
-        { name: 'og:site_name', content: 'vue-starter' },
+        { name: 'og:url', content: 'https://johnthedev.com/' },
+        { name: 'og:site_name', content: 'John McGuinness' },
         { name: 'og:type', content: 'website' },
         { name: 'og:locale', content: 'en' },
         {
           name:    'og:title',
-          content: 'vue-starter - A flexible, scalable, opinionated boilerplate for production-ready PWAs with focus on performance, development speed, and best practices',
+          content: 'John McGuinness - Developer',
         },
         {
           name:    'og:description',
-          content: 'vue-starter - A flexible, scalable, opinionated boilerplate for production-ready PWAs with focus on performance, development speed, and best practices',
+          content: 'John McGuinness - Front End Web Devloper - Philadelphia, PA',
         },
-        { name: 'og:image:url', content: 'https://vue-starter.herokuapp.com/logo.png' },
+        { name: 'og:image:url', content: 'https://jmcg-webpage.herokuapp.com/logo.png' },
 
         { name: 'twitter:card', content: 'summary' },
-        { name: 'twitter:site', content: '@_jwerner_' },
-        { name: 'twitter:creator', content: '@_jwerner_' },
+        { name: 'twitter:site', content: '@johnjohnjohnmcg' },
+        { name: 'twitter:creator', content: '@johnjohnjohnmcg' },
         {
           name:    'twitter:title',
-          content: 'vue-starter - A flexible, scalable, opinionated boilerplate for production-ready PWAs with focus on performance, development speed, and best practices',
+          content: 'John McGuinness - Front End Web Devloper - Philadelphia, PA',
         },
-        { name: 'twitter:url', content: 'https://vue-starter.herokuapp.com/' },
-        { name: 'twitter:image', content: 'https://vue-starter.herokuapp.com/logo.png' },
+        { name: 'twitter:url', content: 'https://jmcg-webpage.herokuapp.com/' },
+        { name: 'twitter:image', content: 'https://jmcg-webpage.herokuapp.com/logo.png' },
         {
           name:    'twitter:description',
-          content: 'vue-starter - A flexible, scalable, opinionated boilerplate for production-ready PWAs with focus on performance, development speed, and best practices',
+          content: 'John McGuinness - Front End Web Devloper - Philadelphia, PA',
         },
       ],
     },
     components: {
       Stage,
+      About,
       DevEx,
       EnterpriseReady,
       UserExperience,

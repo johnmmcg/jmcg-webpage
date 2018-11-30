@@ -92,7 +92,7 @@
       </vue-grid>
     </div>
   <!-- More Comming Soon -->
-    <div :class="$style.bottomMessageContainer">
+    <!-- <div :class="$style.bottomMessageContainer">
       <vue-grid>
         <vue-grid-row>
           <vue-grid-item>
@@ -106,7 +106,7 @@
           </vue-grid-item>
         </vue-grid-row>
       </vue-grid>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -115,13 +115,11 @@
   import VueGrid             from '../../shared/components/VueGrid/VueGrid.vue';
   import VueGridRow          from '../../shared/components/VueGridRow/VueGridRow.vue';
   import VueGridItem         from '../../shared/components/VueGridItem/VueGridItem.vue';
-  import VueIconGithub       from '../../shared/components/icons/VueIconGithub/VueIconGithub.vue';
   import FadeAnimation from '../../shared/animations/FadeAnimation/FadeAnimation.vue';
   import SlideUpAnimation from '../../shared/animations/SlideUpAnimation/SlideUpAnimation.vue';
 
   export default {
     components: {
-      VueIconGithub,
       VueGridItem,
       VueGridRow,
       VueGrid,
@@ -218,6 +216,7 @@
     overflow:   hidden;
     position:   relative;
     text-align: center;
+    margin-bottom: 5rem;
   }
 
   .accent {
@@ -541,35 +540,6 @@
     @include media(tabletPortrait, max) {
       font-size: 3vw;
       margin: auto 2rem;
-    }
-  }
-
-  .github {
-    font-size:           $font-size-h1;
-    top:                 $space-unit * 17;
-    box-shadow:          $nav-bar-shadow;
-    display:             inline-block;
-    background:          $nav-bar-bg;
-    transition:          $button-transition;
-    transition-property: box-shadow, background-color;
-    color:               $text-color;
-    padding:             $button-padding;
-
-    &:hover {
-      box-shadow: $button-active-shadow;
-    }
-
-    @include media(tabletPortrait) {
-      top: $space-unit * 30;
-    }
-
-    @include media(tabletLandscape) {
-      top: $space-unit * 42;
-    }
-
-    i {
-      height: $font-size-h1;
-      width:  $font-size-h1;
     }
   }
 

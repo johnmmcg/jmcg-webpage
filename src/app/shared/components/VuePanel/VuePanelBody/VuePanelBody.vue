@@ -14,7 +14,13 @@
   @import "../../../styles";
 
   .vuePanelBody {
+    font-family: $font-family;
     display: block;
-    padding: $panel-body-padding;
+    font-size: 1.75rem;
+    padding: 1rem;
+
+    @include media(tabletPortrait, max) {
+      font-size: 1.5rem;
+    }
   }
 </style>
