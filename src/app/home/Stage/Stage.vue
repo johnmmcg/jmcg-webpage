@@ -183,25 +183,24 @@
 
       setTimeout((event) => {
         self.active = true;
-      }, 500);
+        self.mainTitleLoaded = true;
+      }, 750);
 
       setTimeout((event) => {
         self.linkOneLoaded = true;
-        self.mainTitleLoaded = true;
-
-      }, 1000);
-
-      setTimeout((event) => {
-        self.linkTwoLoaded = true;
-      }, 1250);
-
-      setTimeout((event) => {
-        self.linkThreeLoaded = true;
       }, 1500);
 
       setTimeout((event) => {
-        self.moreMessageLoaded = true;
+        self.linkTwoLoaded = true;
+      }, 1750);
+
+      setTimeout((event) => {
+        self.linkThreeLoaded = true;
       }, 2000);
+
+      setTimeout((event) => {
+        self.moreMessageLoaded = true;
+      }, 2250);
 
     },
     beforeDestroy() {
@@ -282,10 +281,9 @@
 
   .textBlock {
     width: auto;
-    align-items: center;
-    vertical-align: middle;
     margin-top: 10%;
     text-align: center;
+    position: relative;
     padding: .25rem;
   }
 
@@ -294,9 +292,11 @@
     width: auto;
     display: inline-block;
     background-image: linear-gradient(120deg, $brand-primary 0%, $brand-accent 70%);
+    height: 100%;
     background-repeat: no-repeat;
-    background-size: 100% 0.1em;
-    background-position: 50% 88%;
+    background-size: 0% 0%;
+    background-position: 100% 100%;
+    position: relative;
     animation: mainTitleEntry 5s ease-in-out;
     transition: all 0.25s ease-in;
 
@@ -309,7 +309,6 @@
       font-weight: 700;
       font-size: 8rem;
       letter-spacing: .5rem;
-      margin: .25rem;
       padding: 1rem 3rem;
       padding-top: 0.25rem;
       border: 2px solid $bg-color;
@@ -325,7 +324,10 @@
     padding: 3rem;
     background-image: linear-gradient(120deg, $brand-primary 0%, $brand-accent 70%);
     background-position: 100% 88%;
-    background-size: 100%;
+    background-size: 100% 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
     transition: all 0.25s ease-in;
 
     @include media(tabletPortrait, max) {
@@ -346,8 +348,8 @@
       transition: .25s linear;
 
       @include media(tabletPortrait, max) {
-        font-size: 2rem;
-        padding: 1rem;
+        font-size: 8vw;
+        padding: .5rem 1rem;
       }
     }
   }
@@ -356,10 +358,12 @@
     font-family: $font-family;
     margin: .25rem;
     font-size: 4rem;
+    letter-spacing: normal;
     transition: .2s linear;
 
     @include media(tabletPortrait, max) {
-      font-size: 1.5rem;
+      font-size: 5vw;
+      letter-spacing: 2px;
     }
   }
 
@@ -406,7 +410,7 @@
     display: inline-block;
     width: auto;
     padding: 0;
-    margin-top: 1rem;
+    margin: 1rem auto;
     // border: 4px solid transparent;
     cursor: pointer;
     transition: .25s ease-in-out;
@@ -417,8 +421,9 @@
       text-decoration: none;
 
       .linkTitle {
+        font-size: 1.25rem;
         text-align: center;
-        margin-top: 1.5rem;
+        margin-top: 1rem;
         font-weight: normal;
         transition: .15s linear;
       }
@@ -519,28 +524,6 @@
         }
       }
     }
-
-
-  }
-
-  // clockwise
-  @keyframes spinCW {
-    0% {
-      transform: rotate(0deg);
-    }
-    100%{
-      transform: rotate(720deg);
-    }
-  }
-
-  // counter-clockwise
-  @keyframes spinCCW {
-    0% {
-      transform: rotate(0deg);
-    }
-    100%{
-      transform: rotate(-720deg);
-    }
   }
 
   .bottomMessageContainer {
@@ -552,10 +535,11 @@
   }
 
   .message {
+    font-size: 1.5rem;
     font-family: $font-family;
     transition: .2s linear;
-    @include media(phone, max) {
-      font-size: 1.5rem;
+    @include media(tabletPortrait, max) {
+      font-size: 3vw;
       margin: auto 2rem;
     }
   }
@@ -589,19 +573,73 @@
     }
   }
 
+  .mainTitleLoaded::after {
+  	content:'';
+    top:0;
+  	transform:translateX(100%);
+  	width: 100%;
+  	height: 100%;
+  	position: absolute;
+  	z-index: 1;
+  	animation-name: slide;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1s;
+
+    /*
+    CSS Gradient - complete browser support from http://www.colorzilla.com/gradient-editor/
+    credit to codepen by Kieran Hunter
+    */
+    background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(128,186,232,0) 99%, rgba(125,185,232,0) 100%); /* FF3.6+ */
+  	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(50%,rgba(255,255,255,0.8)), color-stop(99%,rgba(128,186,232,0)), color-stop(100%,rgba(125,185,232,0))); /* Chrome,Safari4+ */
+  	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* Chrome10+,Safari5.1+ */
+  	background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* Opera 11.10+ */
+  	background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* IE10+ */
+  	background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* W3C */
+  	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 */
+  }
+
+  /* animations */
+
+  @keyframes slide {
+  	0% {transform:translateX(-150%);}
+  	100% {transform:translateX(150%);}
+  }
+
+  // clockwise
+  @keyframes spinCW {
+    0% {
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(720deg);
+    }
+  }
+
+  // counter-clockwise
+  @keyframes spinCCW {
+    0% {
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(-720deg);
+    }
+  }
+
+
   @keyframes mainTitleEntry {
     0% {
+      background-position: 50% 88%;
       background-size: 0% 0%;
-      background-position: 50% 88%;
+
     }
 
-    15% {
-      background-size: 100% 0.1em;
+    10% {
       background-position: 50% 88%;
-      transition: all .25s ease-in-out;
+      background-size: 100% 1%;
     }
 
-    30% {
+    20% {
       background-position: 100% 88%;
       background-size: 100% 100%;
     }
@@ -633,38 +671,5 @@
     100% {
       opacity: 1;
     }
-  }
-
-  .mainTitleLoaded::after {
-  	content:'';
-    top:0;
-  	transform:translateX(100%);
-  	width: 100%;
-  	height: 80%;
-  	position: absolute;
-  	z-index:1;
-  	animation-name: slide;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-    animation-delay: .5s;
-
-    /*
-    CSS Gradient - complete browser support from http://www.colorzilla.com/gradient-editor/
-    credit to codepen by Kieran Hunter
-    */
-    background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(128,186,232,0) 99%, rgba(125,185,232,0) 100%); /* FF3.6+ */
-  	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(50%,rgba(255,255,255,0.8)), color-stop(99%,rgba(128,186,232,0)), color-stop(100%,rgba(125,185,232,0))); /* Chrome,Safari4+ */
-  	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* Chrome10+,Safari5.1+ */
-  	background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* Opera 11.10+ */
-  	background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* IE10+ */
-  	background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.8) 50%,rgba(128,186,232,0) 99%,rgba(125,185,232,0) 100%); /* W3C */
-  	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 */
-  }
-
-  /* animation */
-
-  @keyframes slide {
-  	0% {transform:translateX(-150%);}
-  	100% {transform:translateX(150%);}
   }
 </style>
