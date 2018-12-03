@@ -51,7 +51,7 @@
           name:    'og:description',
           content: 'John McGuinness - Front End Web Devloper - Philadelphia, PA',
         },
-        { name: 'og:image:url', content: 'https://jmcg-webpage.herokuapp.com/logo.png' },
+        { name: 'og:image:url', content: 'https://jmcg-webpage.herokuapp.com/favicon.ico' },
 
         { name: 'twitter:card', content: 'summary' },
         { name: 'twitter:site', content: '@johnjohnjohnmcg' },
