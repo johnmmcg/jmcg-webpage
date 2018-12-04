@@ -106,6 +106,7 @@
         activeButton: false,
         activeSection: false,
         slideUpContact: false,
+        isMobile: false,
         aboutTop: 0,
       };
     },
@@ -132,6 +133,12 @@
         canvas.width = aboutRect.width;
         canvas.height = aboutRect.height;
         this.aboutTop = aboutRect.top;
+
+        if (canvas.width < 800) {
+          this.isMobile = true;
+        } else {
+          this.isMobile = false;
+        }
       },
       activateAbout() {
         const self = this;
@@ -142,11 +149,19 @@
         self.handleResize();
 
         setTimeout((event) => {
-          window.scrollTo({
-            top: self.aboutTop,
-            left: 0,
-            behavior: 'smooth',
-          });
+          if (self.isMobile) {
+            window.scrollTo({
+              top: self.aboutTop,
+              left: 0,
+              behavior: 'smooth',
+            });
+          } else {
+            window.scrollTo({
+              top: document.body.scrollHeight,
+              left: 0,
+              behavior: 'smooth',
+            });
+          }
 
           self.slideUpContact = true;
         }, 250);
@@ -174,7 +189,7 @@
 
   .aboutContainer {
     font-family: $font-family;
-    display:    block;
+    display: block;
     margin: auto;
     text-align: center;
     overflow: visible;
@@ -279,39 +294,7 @@
       display: block;
 
       @include media(tabletPortrait, max) {
-        padding-top: 1vh;
-      }
-
-      .vuePanel {
-        width: auto;
-        max-width: 250px;
-        margin: auto;
-      }
-
-      h3 {
-        font-family: $font-family-headings;
-        font-size: 4.5rem;
-        line-height: 1.25;
-        margin: .5rem;
-        margin-bottom: .5rem;
-
-        @include media(tabletPortrait, max) {
-          font-size: 3.5rem;
-        }
-      }
-
-      h5 {
-        font-family: $font-cursive;
-        color: $text-color;
-        font-size: 2.15rem;
-        text-decoration: underline;
-        margin: 0rem auto;
-        text-align: center;
-        line-height: 1;
-      }
-
-      .aboutItems {
-        max-width: 1600px;
+        padding-top: 3vh;
       }
     }
   }

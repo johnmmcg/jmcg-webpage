@@ -51,7 +51,9 @@
   @import "../../styles";
 
   .vuePanel {
-    margin: auto 1rem;
+    width: auto;
+    max-width: 250px;
+    margin: 1rem auto;
     perspective: 1000px;
     transform: rotateX(-180deg);
     transition: .5s linear;
@@ -88,6 +90,32 @@
     	transform: rotateX(0deg);
       opacity: 0;
       transition: opacity .5s ease-in;
+
+      h3 {
+        font-family: $font-family-headings;
+        font-size: 4.5rem;
+        line-height: 1.25;
+        margin: .5rem;
+        margin-bottom: .5rem;
+
+        @include media(tabletPortrait, max) {
+          font-size: 3.5rem;
+        }
+      }
+
+      h5 {
+        font-family: $font-cursive;
+        color: $text-color;
+        font-size: 2.15rem;
+        text-decoration: underline;
+        margin: 0rem auto;
+        text-align: center;
+        line-height: 1;
+      }
+
+      .aboutItems {
+        max-width: 1600px;
+      }
     }
 
     /* back, initially hidden pane */
