@@ -51,7 +51,7 @@
   @import "../../styles";
 
   .vuePanel {
-    margin: auto;
+    margin: auto 1rem;
     perspective: 1000px;
     transform: rotateX(-180deg);
     transition: .5s linear;

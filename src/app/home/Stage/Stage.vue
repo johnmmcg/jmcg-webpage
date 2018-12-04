@@ -32,15 +32,17 @@
             <slide-up-animation>
               <div
                 v-if="linkOneLoaded">
-                <div :class="$style.linkContainer">
-                  <a href="https://www.linkedin.com/in/johnmmcg/"
-                  target="_blank">
+                <div
+                :class="$style.linkContainer">
+                  <a
+                    href="/jmcg-resume.pdf"
+                    target="_blank">
                     <span :class="$style.icon">
-                      <font-awesome-icon :icon="['fab', 'linkedin']" />
+                      <font-awesome-icon :icon="['fas', 'file-alt']" />
                     </span>
                     <p :class="$style.linkTitle"
-                      title="Click to visit my LinkedIn Profile">
-                      LinkedIn
+                      title="Click to view and download my resume">
+                      Resume
                     </p>
                   </a>
                 </div>
@@ -52,15 +54,14 @@
               <div
                 v-if="linkTwoLoaded">
                 <div :class="$style.linkContainer">
-                  <a
-                    href="https://codepen.io/johnmmcg/"
-                    target="_blank">
+                  <a href="https://www.linkedin.com/in/johnmmcg/"
+                  target="_blank">
                     <span :class="$style.icon">
-                      <font-awesome-icon :icon="['fab', 'codepen']" />
+                      <font-awesome-icon :icon="['fab', 'linkedin']" />
                     </span>
                     <p :class="$style.linkTitle"
-                      title="Click to visit my CodePen Profile">
-                      CodePen
+                      title="Click to visit my LinkedIn Profile">
+                      LinkedIn
                     </p>
                   </a>
                 </div>
@@ -139,6 +140,7 @@
         linkOneLoaded: false,
         linkTwoLoaded: false,
         linkThreeLoaded: false,
+        linkFourLoaded: false,
         moreMessageLoaded: false,
       };
     },
@@ -197,6 +199,7 @@
       }, 2000);
 
       setTimeout((event) => {
+        self.linkFourLoaded = true;
         self.moreMessageLoaded = true;
       }, 2250);
 

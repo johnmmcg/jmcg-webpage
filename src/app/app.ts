@@ -13,6 +13,10 @@ import { HttpService } from './shared/services/HttpService';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faArrowCircleDown,
+  faFileAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import {
   faLinkedin,
   faCodepen,
   faGithub,
@@ -21,6 +25,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 library.add(faLinkedin);
 library.add(faCodepen);
 library.add(faGithub);
+library.add(faArrowCircleDown);
+library.add(faFileAlt);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

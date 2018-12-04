@@ -22,16 +22,23 @@
             <vue-panel :delay="750" :class="$style.vuePanel">
               <h3>Capable.</h3>
               <vue-panel-body>
-                <p>Here's what I know:</p>
+                <h5>Skills</h5>
                 <ul>
-                  <li>Javascript</li>
+                  <li>JavaScript</li>
                   <li>HTML</li>
                   <li>CSS</li>
-                  <li>Node.js</li>
+                  <li>Node</li>
+                </ul>
+                <ul>
                   <li>Vue</li>
                   <li>React</li>
-                  <li>JQuery</li>
+                  <li>jQuery</li>
                   <li>Git</li>
+                </ul>
+                <h5>Experience</h5>
+                <ul>
+                  <li>Full Stack Developer at <a href="https://macguyvermedia.com/" target="_blank">MacGuyver Media</a></li>
+                  <li>Apprentice Developer at <a href="https://launchacademy.com/" target="_blank">Launch Academy</a></li>
                 </ul>
               </vue-panel-body>
             </vue-panel>
@@ -99,6 +106,7 @@
         activeButton: false,
         activeSection: false,
         slideUpContact: false,
+        aboutTop: 0,
       };
     },
     computed: {
@@ -123,15 +131,19 @@
 
         canvas.width = aboutRect.width;
         canvas.height = aboutRect.height;
+        this.aboutTop = aboutRect.top;
       },
       activateAbout() {
         const self = this;
 
         self.activeSection = true;
 
+        // reset aboutTop
+        self.handleResize();
+
         setTimeout((event) => {
           window.scrollTo({
-            top: document.body.scrollHeight,
+            top: self.aboutTop,
             left: 0,
             behavior: 'smooth',
           });
@@ -172,7 +184,7 @@
 
     .aboutMe {
       position: absolute;
-      top: -150px;
+      top: -175px;
       left: 0;
       right: 0;
       margin: auto;
@@ -181,7 +193,7 @@
       @include media(tabletPortrait, max) {
         font-size: 3vw;
         margin: auto 2rem;
-        top: -150px;
+        top: -170px;
       }
 
       button {
@@ -278,11 +290,24 @@
 
       h3 {
         font-family: $font-family-headings;
-        margin-bottom: 0;
+        font-size: 4.5rem;
+        line-height: 1.25;
+        margin: .5rem;
+        margin-bottom: .5rem;
 
         @include media(tabletPortrait, max) {
-          font-size: 2rem;
+          font-size: 3.5rem;
         }
+      }
+
+      h5 {
+        font-family: $font-cursive;
+        color: $text-color;
+        font-size: 2.15rem;
+        text-decoration: underline;
+        margin: 0rem auto;
+        text-align: center;
+        line-height: 1;
       }
 
       .aboutItems {
