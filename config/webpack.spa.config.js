@@ -40,7 +40,7 @@ const SPAConfig = merge(baseConfig, {
     new CopyWebpackPlugin([
                             { from: 'src/static', to: '../' },
                             { from: './i18n', to: '../i18n' },
-                            { from: 'src/static/logo.png', to: '../favicon.png' },
+                            { from: 'src/static/favicon.ico', to: '../favicon.ico' },
                           ]),
     new ServiceWorkerWebpackPlugin({ entry: path.join(__dirname, '..', 'src/client/sw.ts'), filename: '../sw.js' }),
     new CompressionPlugin({ algorithm: 'gzip', test: /\.js$|\.css$|\.html$/, threshold: 0, minRatio: 1 }),
