@@ -20,7 +20,8 @@
         <vue-grid-row>
           <vue-grid-item :class="$style.vueGridItem">
             <vue-panel
-              :delay="750"
+              :number="1"
+              :delay="1500"
               :animation="'circleTrace'"
               :class="$style.vuePanel">
               <h3>Capable.</h3>
@@ -49,8 +50,10 @@
 
           <vue-grid-item :class="$style.vueGridItem">
             <vue-panel
+              :number="2"
+              :delay="2500"
               :animation="'radiusAlt'"
-              :delay="1000" :class="$style.vuePanel">
+              :class="$style.vuePanel">
               <h3>Creative.</h3>
               <vue-panel-body>
                 <p>With my background in music production, composition, and performance, I bring the meticulous skills necessary for technical work along with the creative instincts required for artistic design and problem-solving.</p>
@@ -60,7 +63,8 @@
 
           <vue-grid-item  :class="$style.vueGridItem">
             <vue-panel
-              :delay="1250"
+              :number="3"
+              :delay="3500"
               :animation="'caffeinated'"
               :class="$style.vuePanel">
               <h3>Caffeinated.</h3>

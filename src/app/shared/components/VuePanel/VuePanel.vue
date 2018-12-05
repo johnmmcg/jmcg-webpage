@@ -2,9 +2,14 @@
   <div :class="flipPanel">
     <div :class="$style.flipper">
   		<div :class="$style.front">
-        <slot />
+        <div :class="$style.frontContent">
+          <slot />
+        </div>
   		</div>
-  		<div :class="$style.back">
+  		<div :class="$style.back" @click="flipped = true">
+        <div :class="$style.backContent">
+          <h3>{{number}}</h3>
+        </div>
   		</div>
   	</div>
   </div>
@@ -14,6 +19,10 @@
   export default {
     name:       'VuePanel',
     props: {
+      number: {
+        type: Number,
+        required: true,
+      },
       delay: {
         type:     Number,
         required: false,
@@ -71,17 +80,7 @@
     perspective: 1000px;
     transform: rotateX(-180deg);
     box-shadow: none;
-    transition: .25s ease-in;
-
-    &::before,
-    &::after {
-      position: absolute;
-      content: "";
-      left: 0;
-      top: 0;
-      width: 0px;
-      height: 0px;
-    }
+    transition: 1s ease-in;
 
     .front, .back {
     	width: 100%;
@@ -92,7 +91,7 @@
     .flipper {
     	transform-style: preserve-3d;
     	position: relative;
-      overflow: hidden;
+      overflow: visible;
       transition: 1s;
     }
 
@@ -108,48 +107,110 @@
 
     /* front pane, placed above back */
     .front {
-      background-color: $bg-color;
       border-radius:    $panel-border-radius;
       margin:           $panel-margin;
+      padding: 1rem;
+      height: 100%;
+      position: absolute;
     	z-index: 2;
     	/* for firefox 31 */
     	transform: rotateX(0deg);
       opacity: 0;
       transition: opacity 1s ease-in;
 
-      h3 {
-        font-family: $font-family-headings;
-        font-size: 4.5rem;
-        line-height: 1.25;
-        margin: 0;
-        margin-bottom: .5rem;
+      &::before,
+      &::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 0px;
+        height: 0px;
+        z-index: 0;
+      }
 
-        @include media(tabletPortrait, max) {
-          font-size: 3.5rem;
+      .frontContent {
+        background-color: $bg-color;
+
+        h3 {
+          font-family: $font-family-headings;
+          font-size: 4.5rem;
+          line-height: 1.25;
+          margin: 0;
+          margin-bottom: .5rem;
+
+          @include media(tabletPortrait, max) {
+            font-size: 3.5rem;
+          }
         }
-      }
 
-      h5 {
-        font-family: $font-cursive;
-        color: $text-color;
-        font-size: 2.15rem;
-        text-decoration: underline;
-        margin: 0rem auto;
-        text-align: center;
-        line-height: 1;
-      }
-
-      .aboutItems {
-        max-width: 1600px;
+        h5 {
+          font-family: $font-cursive;
+          color: $text-color;
+          font-size: 2.15rem;
+          text-decoration: underline;
+          margin: 0rem auto;
+          text-align: center;
+          line-height: 1;
+        }
       }
     }
 
     /* back, initially hidden pane */
     .back {
-      color: $brand-dark-primary;
-      background: $brand-dark-primary;
-    	transform: rotateX(-180deg);
+      cursor: pointer;
+      position: absolute;
+      transform: rotateX(0deg);
+      transition: .5s;
+
+      .backContent h3 {
+        position: absolute;
+        font-size: 15rem;
+        margin: auto;
+        padding-top: 0rem;
+        padding-bottom: 3rem;
+        line-height: 1;
+        transform: rotateX(180deg);
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: $bg-color;
+        background: $brand-dark-primary;
+        animation: zoomIn 1s ease-in;
+        transition: .25s ease-in-out;
+      }
+
+      &:hover .backContent h3 {
+        color: black;
+      }
+
+      @keyframes zoomIn {
+        0% {
+          opacity: 0;
+          transform: scale(0) rotateX(-180deg);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) rotateX(-180deg);
+        }
+      }
     }
+
+    // &:hover {
+    //   transform: rotateX(0deg);
+    //   position: relative;
+    //   transition: .2s linear;
+    //
+    //   .front {
+    //     transform: rotateX(0deg);
+    //     opacity: 1;
+    //   }
+    //
+    //   .back {
+    //     transform: rotateX(0deg);
+    //     opacity: 0;
+    //   }
+    // }
   }
 
   /* flip the pane when hovered */
@@ -161,9 +222,14 @@
     .front {
       opacity: 1;
     }
+
+    .back {
+      transform: rotateX(0deg);
+      opacity: 0;
+    }
   }
 
-  .circleTrace {
+  .circleTrace .flipper .front {
     box-shadow: inset 0px 0px 0px 1px white;
     position: relative;
     transition: 1s ease-in;
@@ -207,11 +273,13 @@
     }
   }
 
-  .radiusAlt {
+  .radiusAlt .flipper .front {
+    position: relative;
+    height: auto;
     border: 1px solid transparent;
     border-radius: 0%;
     animation: alternateBorderRadius 10s infinite;
-    animation-delay: .5s;
+    animation-delay: .25s;
     transition: all .1s linear;
 
     @keyframes alternateBorderRadius {
@@ -256,33 +324,32 @@
     }
   }
 
-
-  .caffeinated {
-    // border-bottom: 1px solid white;
-    // animation: fillUp 10s infinite;
+  .caffeinated .flipper .front {
     position: relative;
+    z-index: 10;
     transition: 1s linear;
 
     &::before {
       position: absolute;
-      top: 0;
-      left: 4px;
+      top: -1px;
+      left: 2px;
+      z-index: -1;
       height: 99%;
-      width: 290px;
+      width: 275px;
       background-color: $brand-dark-primary;
       animation: fillUp 12s infinite;
       animation-timing-function: step-end;
-      animation-delay: 2s;
+      animation-delay: 1s;
     }
 
     &::after {
       position: absolute;
-      top: 0;
-      left: 4px;
+      top: -1px;
+      left: 2px;
       height: 100%;
-      width: 290px;
+      width: 275px;
       background-color: white;
-      z-index: -1;
+      z-index: -2;
     }
 
     @keyframes fillUp {
