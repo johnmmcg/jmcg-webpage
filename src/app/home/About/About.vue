@@ -19,10 +19,13 @@
       <vue-grid :class="$style.aboutItems">
         <vue-grid-row>
           <vue-grid-item :class="$style.vueGridItem">
-            <vue-panel :delay="750" :class="$style.vuePanel">
+            <vue-panel
+              :delay="750"
+              :animation="'circleTrace'"
+              :class="$style.vuePanel">
               <h3>Capable.</h3>
               <vue-panel-body>
-                <h5>Skills</h5>
+                <h5>Skills & Experience</h5>
                 <ul>
                   <li>JavaScript</li>
                   <li>HTML</li>
@@ -35,7 +38,7 @@
                   <li>jQuery</li>
                   <li>Git</li>
                 </ul>
-                <h5>Experience</h5>
+                <br>
                 <ul>
                   <li>Full Stack Developer at <a href="https://macguyvermedia.com/" target="_blank">MacGuyver Media</a></li>
                   <li>Apprentice Developer at <a href="https://launchacademy.com/" target="_blank">Launch Academy</a></li>
@@ -45,7 +48,9 @@
           </vue-grid-item>
 
           <vue-grid-item :class="$style.vueGridItem">
-            <vue-panel :delay="1000" :class="$style.vuePanel">
+            <vue-panel
+              :animation="'radiusAlt'"
+              :delay="1000" :class="$style.vuePanel">
               <h3>Creative.</h3>
               <vue-panel-body>
                 <p>With my background in music production, composition, and performance, I bring the meticulous skills necessary for technical work along with the creative instincts required for artistic design and problem-solving.</p>
@@ -54,7 +59,10 @@
           </vue-grid-item>
 
           <vue-grid-item  :class="$style.vueGridItem">
-            <vue-panel :delay="1250" :class="$style.vuePanel">
+            <vue-panel
+              :delay="1250"
+              :animation="'caffeinated'"
+              :class="$style.vuePanel">
               <h3>Caffeinated.</h3>
               <vue-panel-body>
                 <p>Side-note, but related: I love coffee. It's been a passion of mine for a few years now and, fortunately, I find it to be delicious fuel for web development.</p>
