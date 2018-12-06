@@ -2,9 +2,6 @@
   <div :class="$style.stage" ref="stage">
   <!-- Canvas for Circle Animation -->
     <canvas :class="$style.canvas" ref="canvas"></canvas>
-    </fade-animation>
-    <!-- <div :class="$style.accent"></div>
-    <div :class="$style.accentTwo"></div> -->
   <!-- Text Grid -->
     <fade-animation>
       <vue-grid v-if="active">

@@ -1,59 +1,6 @@
 <template>
   <div id="app" :class="$style.app">
-    <!-- <vue-notification-stack /> -->
-
-    <!-- <vue-navigation-progress :is-navigating="isNavigating" /> -->
-
-    <!-- <vue-nav-bar>
-      <ul :class="$style.nav">
-        <li>
-          <a href="/docs" @click.native="navBarClose">
-            <vue-icon-book />
-            <small>{{ $t('App.nav.docs' /* Documentation */) }}</small>
-          </a>
-        </li>
-        <li>
-          <router-link to="/counter" @click.native="navBarClose">
-            <vue-icon-hashtag />
-            <small>{{ $t('App.nav.counter' /* Counter */) }}</small>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/components" @click.native="navBarClose">
-            <vue-icon-puzzle-piece />
-            <small>{{ $t('App.nav.components' /* Components */) }}</small>
-          </router-link>
-        </li>
-        <li>
-          <a @click="localeSwitch('en')">
-            <vue-icon-flag />
-            <small>English</small>
-          </a>
-        </li>
-        <li>
-          <a @click="localeSwitch('de')">
-            <vue-icon-flag />
-            <small>Deutsch</small>
-          </a>
-        </li>
-        <li>
-          <a @click="localeSwitch('pt')">
-            <vue-icon-flag />
-            <small>Português</small>
-          </a>
-        </li>
-        <li>
-          <a @click="localeSwitch('zh-cn')">
-            <vue-icon-flag />
-            <small>中文</small>
-          </a>
-        </li>
-      </ul>
-    </vue-nav-bar> -->
-
     <router-view :class="$style.content" />
-
-    <!-- <vue-footer /> -->
   </div>
 </template>
 

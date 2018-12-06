@@ -32,7 +32,7 @@
         type: String,
         required: false,
         default: 'default',
-      }
+      },
     },
     data() {
       return {

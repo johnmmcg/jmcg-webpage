@@ -4,3 +4,4 @@ declare var PRODUCTION: boolean;
 declare var DEVELOPMENT: boolean;
 declare var TEST: boolean;
 declare module '@fortawesome/*';
+declare module '@fawmi/*';

@@ -5,6 +5,8 @@
 
     <about />
 
+    <gallery />
+
     <!-- <dev-ex /> -->
     <!-- <enterprise-ready />
     <user-experience />
@@ -16,6 +18,7 @@
   import { mapState }    from 'vuex';
   import Stage           from '../Stage/Stage.vue';
   import About           from '../About/About.vue';
+  import Gallery         from '../Gallery/Gallery.vue';
   import DevEx           from '../DevEx/DevEx.vue';
   import EnterpriseReady from '../EnterpriseReady/EnterpriseReady.vue';
   import UserExperience  from '../UserExperience/UserExperience.vue';
@@ -71,6 +74,7 @@
     components: {
       Stage,
       About,
+      Gallery,
       DevEx,
       EnterpriseReady,
       UserExperience,
