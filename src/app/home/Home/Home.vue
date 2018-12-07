@@ -5,8 +5,6 @@
 
     <about />
 
-    <gallery />
-
     <!-- <dev-ex /> -->
     <!-- <enterprise-ready />
     <user-experience />
@@ -92,6 +90,8 @@
   @import "../../shared/styles";
 
   .home {
+    overflow: hidden;
+
     h2 {
       // text-shadow: 0 5px 10px rgba(0, 0, 0, 0.33);
     }

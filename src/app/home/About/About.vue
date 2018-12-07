@@ -21,7 +21,7 @@
           <vue-grid-item :class="$style.vueGridItem">
             <vue-panel
               :number="1"
-              :delay="1500"
+              :delay="750"
               :animation="'circleTrace'"
               :class="$style.vuePanel">
               <h3>Capable.</h3>
@@ -51,7 +51,7 @@
           <vue-grid-item :class="$style.vueGridItem">
             <vue-panel
               :number="2"
-              :delay="2500"
+              :delay="1250"
               :animation="'radiusAlt'"
               :class="$style.vuePanel">
               <h3>Creative.</h3>
@@ -64,7 +64,7 @@
           <vue-grid-item  :class="$style.vueGridItem">
             <vue-panel
               :number="3"
-              :delay="3500"
+              :delay="1750"
               :animation="'caffeinated'"
               :class="$style.vuePanel">
               <h3>Caffeinated.</h3>
@@ -73,22 +73,19 @@
               </vue-panel-body>
             </vue-panel>
           </vue-grid-item>
-
         </vue-grid-row>
       </vue-grid>
 
       <!-- Contact -->
       <slide-up-animation>
-        <vue-grid v-if="slideUpContact" :class="$style.contactContainer">
-          <vue-grid-row>
-            <vue-grid-item>
-              <h3>Want to connect?</h3>
-                <a href="mailto:john.maurer.mcguinness@gmail.com">            john.maurer.mcguinness@gmail.com</a>
-            </vue-grid-item>
-          </vue-grid-row>
-        </vue-grid>
+        <connect v-if="slideUpContact" :buttonAction="activateGallery"></connect>
       </slide-up-animation>
     </div>
+
+    <div ref="gallery">
+      <gallery v-if="activeGallery"></gallery>
+    </div>
+
   </div>
 </template>
 
@@ -101,6 +98,8 @@
   import VuePanelBody    from '../../shared/components/VuePanel/VuePanelBody/VuePanelBody.vue';
   import FadeAnimation from '../../shared/animations/FadeAnimation/FadeAnimation.vue';
   import SlideUpAnimation from '../../shared/animations/SlideUpAnimation/SlideUpAnimation.vue';
+  import Connect from './Connect.vue';
+  import Gallery from '../Gallery/Gallery.vue';
 
   export default {
     components: {
@@ -112,6 +111,8 @@
       VueGridRow,
       FadeAnimation,
       SlideUpAnimation,
+      Connect,
+      Gallery,
     },
     data() {
       return {
@@ -120,6 +121,8 @@
         slideUpContact: false,
         isMobile: false,
         aboutTop: 0,
+        galleryTop: 0,
+        activeGallery: false,
       };
     },
     computed: {
@@ -174,9 +177,32 @@
               behavior: 'smooth',
             });
           }
+        }, 500);
 
+        setTimeout((event) => {
           self.slideUpContact = true;
-        }, 250);
+        }, 2250);
+      },
+      activateGallery() {
+        const self = this;
+
+        self.activeGallery = true;
+
+        setTimeout((event) => {
+          if (self.isMobile) {
+            window.scrollTo({
+              top: (self.aboutTop * 2.5),
+              left: 0,
+              behavior: 'smooth',
+            });
+          } else {
+            window.scrollTo({
+              top: document.body.scrollHeight,
+              left: 0,
+              behavior: 'smooth',
+            });
+          }
+        }, 1000);
       },
     },
     beforeMount() {
@@ -218,9 +244,9 @@
       display: inline-block;
 
       @include media(tabletPortrait, max) {
-        font-size: 3vw;
-        margin: auto 2rem;
-        top: -170px;
+        font-size: 1rem;
+        margin: 1rem auto;
+        top: -150px;
       }
 
       button {
@@ -242,7 +268,7 @@
 
 
         @include media(tabletPortrait, max) {
-          font-size: 2rem;
+          font-size: 1.5rem;
           padding: .5rem 1rem;
         }
 
@@ -257,6 +283,15 @@
           border-left:solid 8px transparent;
           animation: pointDown 3s infinite;
           transition: .25s linear;
+
+          @include media(tabletPortrait, max) {
+            top: 40px;
+            left: 45%;
+            z-index: 0;
+            border-top:solid 12px black;
+            border-right:solid 6px transparent;
+            border-left:solid 6px transparent;
+          }
         }
 
         &:hover {
@@ -276,6 +311,15 @@
             border-left:solid 12px transparent;
             animation: none;
             transition: .25s linear;
+
+            @include media(tabletPortrait, max) {
+              top: 45px;
+              left: 45%;
+              z-index: 0;
+              border-top:solid 16px black;
+              border-right:solid 8px transparent;
+              border-left:solid 8px transparent;
+            }
           }
         }
       }
@@ -309,50 +353,9 @@
         padding-top: 3vh;
       }
     }
-  }
 
-  .contactContainer {
-    position: absolute;
-    left:0;
-    right:0;
-    bottom: 0px;
-    margin: 2rem auto;
-    margin-bottom: 0;
-    padding: 2rem 1rem;
-    border: 4px solid $bg-color;
-    border-bottom-color: transparent;
-    display: inline-block;
-    width: auto;
-    max-width: 600px;
-
-    @include media(tabletPortrait, max) {
-      padding-top: 0rem;
-    }
-
-    h3 {
-      color: $brand-light-primary;
-      font-size: 3rem;
-
-      @include media(tabletPortrait, max) {
-        margin-top: 2rem;
-        font-size: 8vw;
-      }
-    }
-
-    a {
-      font-size: 1.75rem;
-      font-weight: normal;
-      text-decoration: none;
-      color: $brand-accent;
-      word-break: break-all;
-      line-height: 1;
-      transition: .25s linear;
-
-      &:hover {
-        font-weight: bold;
-        color: $bg-color;
-        border-bottom: 1px solid $bg-color;
-      }
+    .aboutItems {
+      max-width: 1600px;
     }
   }
 

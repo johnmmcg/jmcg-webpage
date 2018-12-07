@@ -71,14 +71,13 @@
   @import "../../styles";
 
   .vuePanel {
-    width: auto;
-    max-width: 300px;
-    min-width: 200px;
+    width: 300px;
+    min-height: 300px;
     margin: 1rem auto;
+    margin-bottom: 8rem;
     padding: 1rem;
     position: relative;
     perspective: 1000px;
-    transform: rotateX(-180deg);
     box-shadow: none;
     transition: 1s ease-in;
 
@@ -92,17 +91,17 @@
     	transform-style: preserve-3d;
     	position: relative;
       overflow: visible;
-      transition: 1s;
+      transition: 1s linear;
     }
 
     /* hide back of pane during swap */
     .front, .back {
-      height: 100%;
+      height: auto;
       width: 100%;
+      cursor: default;
     	backface-visibility: hidden;
     	position: relative;
-    	top: 0;
-    	left: 0;
+      transition: .5s ease-in;
     }
 
     /* front pane, placed above back */
@@ -110,13 +109,11 @@
       border-radius:    $panel-border-radius;
       margin:           $panel-margin;
       padding: 1rem;
-      height: 100%;
+      height: auto;
       position: absolute;
     	z-index: 2;
-    	/* for firefox 31 */
-    	transform: rotateX(0deg);
-      opacity: 0;
-      transition: opacity 1s ease-in;
+    	transform: rotateX(-180deg);
+      transition: opacity 1s ease-in, transform .5s ease-in;
 
       &::before,
       &::after {
@@ -130,6 +127,8 @@
       }
 
       .frontContent {
+        position: relative;
+        height: 100%;
         background-color: $bg-color;
 
         h3 {
@@ -161,16 +160,14 @@
       cursor: pointer;
       position: absolute;
       transform: rotateX(0deg);
-      transition: .5s;
+      transition: .5s ease-in;
 
       .backContent h3 {
-        position: absolute;
         font-size: 15rem;
         margin: auto;
         padding-top: 0rem;
         padding-bottom: 3rem;
         line-height: 1;
-        transform: rotateX(180deg);
         bottom: 0;
         left: 0;
         right: 0;
@@ -180,59 +177,46 @@
         transition: .25s ease-in-out;
       }
 
-      &:hover .backContent h3 {
-        color: black;
+      &:hover {
+
       }
 
       @keyframes zoomIn {
         0% {
           opacity: 0;
-          transform: scale(0) rotateX(-180deg);
+          transform: scale(0);
         }
         100% {
           opacity: 1;
-          transform: scale(1) rotateX(-180deg);
+          transform: scale(1);
         }
       }
     }
-
-    // &:hover {
-    //   transform: rotateX(0deg);
-    //   position: relative;
-    //   transition: .2s linear;
-    //
-    //   .front {
-    //     transform: rotateX(0deg);
-    //     opacity: 1;
-    //   }
-    //
-    //   .back {
-    //     transform: rotateX(0deg);
-    //     opacity: 0;
-    //   }
-    // }
   }
 
   /* flip the pane when hovered */
   .flipped {
-    transform: rotateX(0deg);
     position: relative;
-    transition: .25s linear;
+    transition: .5s linear;
 
     .front {
-      opacity: 1;
+      position: absolute;
+      transform: rotateX(0deg);
+      z-index: 500;
+      transition: .5s ease-in;
     }
 
     .back {
-      transform: rotateX(0deg);
-      opacity: 0;
+      position: absolute;
+      transform: rotateX(180deg);
+      z-index: 0;
+      transition: .5s ease-in;
     }
   }
 
   .circleTrace .flipper .front {
     box-shadow: inset 0px 0px 0px 1px white;
-    position: relative;
-    transition: 1s ease-in;
+    transition: .5s ease-in;
 
     &::before {
       position: absolute;
@@ -274,13 +258,12 @@
   }
 
   .radiusAlt .flipper .front {
-    position: relative;
     height: auto;
     border: 1px solid transparent;
     border-radius: 0%;
     animation: alternateBorderRadius 10s infinite;
     animation-delay: .25s;
-    transition: all .1s linear;
+    transition: .5s ease-in;
 
     @keyframes alternateBorderRadius {
       0% {
@@ -325,9 +308,8 @@
   }
 
   .caffeinated .flipper .front {
-    position: relative;
     z-index: 10;
-    transition: 1s linear;
+    transition: .5s ease-in;
 
     &::before {
       position: absolute;
@@ -340,6 +322,7 @@
       animation: fillUp 12s infinite;
       animation-timing-function: step-end;
       animation-delay: 1s;
+      transition: .25s ease-in;
     }
 
     &::after {
@@ -350,6 +333,7 @@
       width: 275px;
       background-color: white;
       z-index: -2;
+      transition: .25s ease-in;
     }
 
     @keyframes fillUp {

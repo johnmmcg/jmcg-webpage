@@ -1,18 +1,25 @@
 <template>
-  <fade-animation>
-    <vue-grid-item v-if="active" :class="$style.photoGridItem" :style="randomRotate()">
-        <img :src="src" :title="desciption" :alt="description" />
+  <vue-grid-item
+    :class="selectPhoto"
+    :data-index="index">
+    <push-up-animation>
+      <div v-if="active"
+        :class="$style.photoContainer"
+        :style="randomRotate()"
+        @click="setSelected">
+        <img :src="src" :title="description" :alt="description" />
         <h3>{{ title }}</h3>
-    </vue-grid-item>
-  </fade-animation>
+      </div>
+    </push-up-animation>
+  </vue-grid-item>
 </template>
 
 <script lang="ts">
   import VueGrid             from '../../shared/components/VueGrid/VueGrid.vue';
   import VueGridRow          from '../../shared/components/VueGridRow/VueGridRow.vue';
   import VueGridItem         from '../../shared/components/VueGridItem/VueGridItem.vue';
-  import FadeAnimation from '../../shared/animations/FadeAnimation/FadeAnimation.vue';
   import SlideUpAnimation from '../../shared/animations/SlideUpAnimation/SlideUpAnimation.vue';
+  import PushUpAnimation from '../../shared/animations/PushUpAnimation/PushUpAnimation.vue';
 
   export default {
     name: 'Photo',
@@ -20,8 +27,8 @@
       VueGridItem,
       VueGridRow,
       VueGrid,
-      FadeAnimation,
       SlideUpAnimation,
+      PushUpAnimation,
     },
     props: {
       description: {
@@ -42,6 +49,22 @@
         required: false,
         default: 0,
       },
+      delay: {
+        type: Number,
+        required: false,
+        default: 1000,
+      },
+      index: {
+        type: Number,
+        require: true,
+      },
+      onClick: {
+        type: Function,
+      },
+      selected: {
+        type: Boolean,
+        required: true,
+      },
     },
     data() {
       return {
@@ -49,7 +72,11 @@
       };
     },
     mounted() {
-      this.active = true;
+      const self = this;
+
+      setTimeout((event) => {
+        self.active = true;
+      }, self.delay);
     },
     methods: {
       randomRotate() {
@@ -59,6 +86,18 @@
       randomIntFromInterval(min: number, max: number) {
         return Math.floor(Math.random() * (max - min + 1) + min);
       },
+      setSelected() {
+        this.onClick(this.index);
+      },
+    },
+    computed: {
+      selectPhoto() {
+        if (this.selected) {
+          return [this.$style.selected];
+        } else {
+          return [this.$style.photoGridItem];
+        }
+      },
     },
   };
 </script>
@@ -67,32 +106,124 @@
   @import "../../shared/styles";
 
   .photoGridItem {
-    // margin: 0 auto;
-    margin: 1rem auto;
-    padding: 0rem;
-    display: inline;
-    width: auto;
-    background: $bg-color;
-    border: 6px solid white;
-    border-bottom: 12px solid white;
-    box-shadow: 0 0 1px black;
+    margin: 0 auto;
+    position: relative;
+    top: 0px;
+    min-width: 250px;
+    min-height: 400px;
+    z-index: 10;
+    cursor: pointer;
+    transform: scale(1);
+    overflow: visible;
+    transition: .5s ease-in-out;
 
-    img {
-      padding: 0;
-      margin: 0;
-      position: relative;
-      width: 100%;
-      height: auto;
-      max-width: 50vw;
+    @include media(tabletPortrait, max) {
+      min-height: 300px;
     }
 
-    h3 {
-      text-align: center;
-      color: black;
-      margin: 0;
-      font-size: 2.5rem;
-      font-family: $font-marker;
-      line-height: 1;
+    .photoContainer {
+      margin: 0 auto;
+      z-index: 0;
+      position: relative;
+      width: 200px;
+      height: auto;
+      background: $bg-color;
+      border: 6px solid white;
+      border-bottom: 12px solid white;
+      box-shadow: 0px 0px 5px black;
+      transition: .5s ease-in-out;
+
+      img {
+        z-index: 0;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-width: 50vw;
+        transition: .5s ease-in-out;
+      }
+
+      h3 {
+        z-index: 0;
+        text-align: center;
+        color: black;
+        margin: 0;
+        font-size: 2rem;
+        font-family: $font-marker;
+        line-height: 1.25;
+        transition: 25s linear;
+      }
+    }
+
+    @keyframes pulsePhoto {
+      0% {
+        top: 0px;
+        transition: .25s ease-in;
+      }
+      50% {
+        top: -10px;
+        transition: .25s ease-in;
+      }
+      100% {
+        top: 0px;
+        transition: .25s ease-in;
+      }
+    }
+
+    &:hover {
+      animation: pulsePhoto .5s linear;
+      transition: .25s ease-in;
+    }
+  }
+
+  .selected {
+    margin: 0 auto;
+    min-width: 200px;
+    min-height: 400px;
+    position: relative;
+    z-index: 500;
+    cursor: pointer;
+    transform: scale(1.5);
+    overflow: visible;
+    transition: .5s ease-in-out;
+
+    @include media(tabletPortrait, max) {
+      min-height: 300px;
+    }
+
+    .photoContainer {
+      margin: 0 auto;
+      position: relative;
+      width: 200px;
+      height: auto;
+      background: $bg-color;
+      border: 6px solid white;
+      border-bottom: 12px solid white;
+      box-shadow: 0px 0px 1px black;
+      transition: .5s ease-in-out;
+
+      img {
+        padding: 0;
+        margin: 0;
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-width: 50vw;
+        transition: .5s ease-in-out;
+      }
+
+      h3 {
+        z-index: 0;
+        text-align: center;
+        color: black;
+        margin: 0;
+        font-size: 2.5rem;
+        font-family: $font-marker;
+        line-height: 1;
+        transition: 25s linear;
+
+      }
     }
   }
 

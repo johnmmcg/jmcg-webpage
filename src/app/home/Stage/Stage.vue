@@ -89,22 +89,6 @@
         </vue-grid-row>
       </vue-grid>
     </div>
-  <!-- More Comming Soon -->
-    <!-- <div :class="$style.bottomMessageContainer">
-      <vue-grid>
-        <vue-grid-row>
-          <vue-grid-item>
-            <fade-animation>
-              <div
-                v-if="moreMessageLoaded"
-                :class="$style.message">
-                <p>[more comming soon]</p>
-              </div>
-            </fade-animation>
-          </vue-grid-item>
-        </vue-grid-row>
-      </vue-grid>
-    </div> -->
   </div>
 </template>
 
@@ -284,6 +268,10 @@
     text-align: center;
     position: relative;
     padding: .25rem;
+
+    @include media(tabletPortrait, max) {
+      margin-top: .5rem;
+    }
   }
 
   .mainTitle {
@@ -402,6 +390,11 @@
     height: auto;
     max-width: 1000px;
     margin: auto;
+
+    @include media(tabletPortrait, max) {
+      padding: 0;
+      padding-bottom: 8rem;
+    }
   }
 
   .linkContainer {
@@ -410,9 +403,13 @@
     width: auto;
     padding: 0;
     margin: 1rem auto;
-    // border: 4px solid transparent;
     cursor: pointer;
     transition: .25s ease-in-out;
+
+    @include media(tabletPortrait, max) {
+      padding: 0;
+      margin: .25rem auto;
+    }
 
     a {
       width: 100%;
@@ -425,6 +422,10 @@
         margin-top: 1rem;
         font-weight: normal;
         transition: .15s linear;
+
+        @include media(tabletPortrait, max) {
+          margin-top: .5rem;
+        }
       }
 
       span {
@@ -441,6 +442,10 @@
         border: 4px solid transparent;
         position: relative;
         transition: .2s ease-in-out;
+
+        @include media(tabletPortrait, max) {
+          transform: scale(.9);
+        }
 
         &::before {
           position: absolute;
