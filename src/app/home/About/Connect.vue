@@ -4,10 +4,10 @@
       <vue-grid-item>
         <h3>Want to connect?</h3>
         <a href="mailto:john.maurer.mcguinness@gmail.com">            john.maurer.mcguinness@gmail.com</a>
-        <button type="button" name="button" @click="buttonAction">More About Me
+        <!-- <button type="button" name="button" @click="buttonAction">More About Me
           <div :class="$style.triangle">
           </div>
-        </button>
+        </button> -->
       </vue-grid-item>
     </vue-grid-row>
   </vue-grid>
@@ -83,6 +83,10 @@
         font-weight: bold;
         color: $bg-color;
         border-bottom: 1px solid $bg-color;
+      }
+
+      @include media(tabletPortrait, max) {
+        font-size: 1.5rem;
       }
     }
 
