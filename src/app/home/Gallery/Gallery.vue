@@ -1,6 +1,12 @@
 <template>
   <div v-if="active" :class="$style.gallery" ref="gallery">
-    <h5>I'm a Front-End Web Developer seeking a full-time position in Philadelphia, PA. I love a good cup of coffee and creating elegant, beautiful, and usable websites.</h5>
+    <vue-grid>
+      <vue-grid-row>
+        <vue-grid-item>
+          <h5>I'm a Front End Web Developer based in Philadelphia, PA. <br> I love a good cup of coffee and creating beautiful, efficient, and usable websites.</h5>
+        </vue-grid-item>
+      </vue-grid-row>
+    </vue-grid>
     <vue-grid :class="$style.galleryGrid">
       <vue-grid-row>
         <photo v-for="(photo, index) in photos"
@@ -15,6 +21,16 @@
           :selected="selected == (index + 1)" />
       </vue-grid-row>
     </vue-grid>
+    <!-- <vue-grid>
+      <vue-grid-row>
+        <vue-grid-item>
+          <p>Thanks for visiting.</p>
+        </vue-grid-item>
+      </vue-grid-row>
+    </vue-grid> -->
+    <div :class="$style.footerContainer">
+      <vue-footer />
+    </div>
   </div>
 </template>
 
@@ -25,6 +41,7 @@
   import FadeAnimation from '../../shared/animations/FadeAnimation/FadeAnimation.vue';
   import SlideUpAnimation from '../../shared/animations/SlideUpAnimation/SlideUpAnimation.vue';
   import Photo from './Photo.vue';
+  import VueFooter from '../../shared/components/VueFooter/VueFooter.vue';
 
   export default {
     name: 'Gallery',
@@ -35,6 +52,7 @@
       FadeAnimation,
       SlideUpAnimation,
       Photo,
+      VueFooter,
     },
     data() {
       return {
@@ -100,17 +118,20 @@
 
   .gallery {
     background: $brand-light-primary;
-    overflow:   visible;
+    overflow:   hidden;
     position:   relative;
-    padding: 10vh 4rem;
-    min-height: 800px;
+    padding: 2rem 0;
+    padding-bottom: 0;
     margin: 0 auto;
 
+    @include media(phone, max) {
+      min-height: 2200px;
+    }
+
     h5 {
-      font-size: 3rem;
+      font-size: 2.75rem;
       margin: 1rem auto;
-      margin-bottom: 2rem;
-      max-width: 800px;
+      max-width: 1000px;
 
       @include media(tabletPortrait, max) {
         font-size: 2.25rem;
@@ -119,9 +140,16 @@
 
     .galleryGrid {
       max-width: 1200px;
-      margin-top: 2rem;
-      padding: 2rem;
+      min-height: 650px;
+      margin: 5rem auto;
+      margin-bottom: 12rem;
+      padding: 0 4rem;
       display: block;
+
+      @include media(tabletPortrait, max) {
+        margin: 1rem auto;
+        padding-bottom: 14rem;
+      }
     }
   }
 

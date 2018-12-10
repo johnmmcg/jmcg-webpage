@@ -191,7 +191,7 @@
         setTimeout((event) => {
           if (self.isMobile) {
             window.scrollTo({
-              top: (self.aboutTop * 2.5),
+              top: (window.pageYOffset + window.innerHeight),
               left: 0,
               behavior: 'smooth',
             });
@@ -202,7 +202,7 @@
               behavior: 'smooth',
             });
           }
-        }, 1000);
+        }, 500);
       },
     },
     beforeMount() {
