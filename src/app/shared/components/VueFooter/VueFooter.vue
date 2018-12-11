@@ -7,7 +7,10 @@
             <small>
               Thanks for visiting!
             </small>
-            <br>
+          </vue-grid-item>
+        </vue-grid-row>
+        <vue-grid-row>
+          <vue-grid-item>
             <a
               href="/jmcg-resume.pdf"
               target="_blank">
@@ -57,11 +60,6 @@
         active: false,
       };
     },
-    computed:   {
-      year() {
-        return new Date().getFullYear();
-      },
-    },
     mounted() {
       const self = this;
       setTimeout((event) => {
@@ -86,7 +84,7 @@
     z-index: 50;
 
     @include media(tabletPortrait, max) {
-      height: 120px;
+      height: 110px;
     }
 
     i {

@@ -107,18 +107,18 @@
 
   .photoGridItem {
     margin: 0 auto;
-    position: relative;
     min-width: 250px;
     min-height: 300px;
+    position: relative;
     z-index: 10;
     cursor: pointer;
     transform: scale(1);
     overflow: visible;
-    transition: .5s ease-in-out;
+    transition: .25s ease-in-out;
 
     &:hover {
       animation: pulseUpPhoto .5s linear;
-      transition: .25s ease-in;
+      transition: .25s ease-in-out;
     }
 
     @include media(tabletPortrait, max) {
@@ -135,12 +135,9 @@
       background: $bg-color;
       border: 6px solid white;
       border-bottom: 12px solid white;
-      box-shadow: 0px 0px 5px black;
-      transition: .5s ease-in-out;
+      box-shadow: 0px 0px 1px black;
+      transition: .25s ease-in-out;
 
-      @include media(tabletPortrait, max) {
-        width: 250px;
-      }
 
       img {
         z-index: 0;
@@ -149,7 +146,7 @@
         position: relative;
         width: 100%;
         height: auto;
-        transition: .5s ease-in-out;
+        transition: .25s ease-in-out;
       }
 
       h3 {
@@ -159,8 +156,9 @@
         margin: 0;
         font-size: 2rem;
         font-family: $font-marker;
-        line-height: 1.25;
-        transition: 25s linear;
+        line-height: 1;
+        word-wrap: none;
+        transition: 25s ease-in-out;
       }
     }
   }
@@ -174,11 +172,11 @@
     cursor: pointer;
     transform: scale(1.5);
     overflow: visible;
-    transition: .5s ease-in-out;
+    transition: .25s ease-in-out;
 
     &:hover {
       animation: pulseDownPhoto .5s reverse;
-      transition: .25s ease-in;
+      transition: .25s ease-in-out;
     }
 
     @include media(tabletPortrait, max) {
@@ -195,11 +193,7 @@
       border: 6px solid white;
       border-bottom: 12px solid white;
       box-shadow: 0px 0px 1px black;
-      transition: .5s ease-in-out;
-
-      @include media(tabletPortrait, max) {
-        width: 250px;
-      }
+      transition: .25s ease-in-out;
 
       img {
         padding: 0;
@@ -207,7 +201,7 @@
         position: relative;
         width: 100%;
         height: auto;
-        transition: .5s ease-in-out;
+        transition: .25s ease-in-out;
       }
 
       h3 {
@@ -215,10 +209,10 @@
         text-align: center;
         color: black;
         margin: 0;
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-family: $font-marker;
-        line-height: 1;
-        transition: 25s linear;
+        word-wrap: none;
+        transition: .25s ease-in-out;
 
       }
     }

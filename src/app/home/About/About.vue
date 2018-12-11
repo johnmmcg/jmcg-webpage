@@ -197,7 +197,7 @@
             });
           } else {
             window.scrollTo({
-              top: document.body.scrollHeight,
+              top: (window.pageYOffset + window.innerHeight),
               left: 0,
               behavior: 'smooth',
             });

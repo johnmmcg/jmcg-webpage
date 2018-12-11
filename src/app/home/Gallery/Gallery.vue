@@ -1,5 +1,5 @@
 <template>
-  <div v-if="active" :class="$style.gallery" ref="gallery">
+  <div v-if="active" :class="$style.gallery" id="gallery">
     <vue-grid>
       <vue-grid-row>
         <vue-grid-item>
@@ -62,37 +62,37 @@
           {
             title: 'That\'s me!',
             description: 'At a market in Cusco, Peru',
-            src: '/marketCusco.jpg',
+            src: '/marketCusco-min.jpg',
             delay: 500,
           },
           {
             title: 'Diego',
             description: 'My Olde English Bulldog, Diego',
-            src: '/diegoyyo2.png',
+            src: '/diegoyyo2-min.png',
             delay: 750,
           },
           {
             title: 'Machu Picchu with Alex',
             description: 'My wife, Alex, and I at Macchu Picchu.',
-            src: '/alexyyomacchupicchu.jpg',
+            src: '/alexyyomacchupicchu-min.jpg',
             delay: 1000,
           },
           {
             title: 'Cup of Joe',
             description: 'Cup of Joe',
-            src: '/coffeeMug.jpg',
+            src: '/coffeeMug-min.jpg',
             delay: 1250,
           },
           {
             title: 'Stone Henge',
             description: 'My wife, Alex, and I at Stone Henge.',
-            src: '/alexyyoStoneHenge.jpg',
+            src: '/alexyyoStoneHenge-min.jpg',
             delay: 1500,
           },
           {
             title: 'More Diego',
             description: 'More Diego',
-            src: '/diegoyyo.png',
+            src: '/diegoyyo-min.png',
             delay: 1750,
           },
         ],
@@ -129,7 +129,7 @@
     }
 
     h5 {
-      font-size: 2.75rem;
+      font-size: 2.5rem;
       margin: 1rem auto;
       max-width: 1000px;
 
@@ -141,7 +141,7 @@
     .galleryGrid {
       max-width: 1200px;
       min-height: 650px;
-      margin: 5rem auto;
+      margin: 2rem auto;
       margin-bottom: 12rem;
       padding: 0 4rem;
       display: block;
