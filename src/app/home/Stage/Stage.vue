@@ -14,7 +14,7 @@
               <h2 :class="$style.title">Front End Web Developer</h2>
               <div :class="$style.locationContainer">
                 <h3 :class="$style.subTitle">Philadelphia    Pennsylvania</h3>
-                <img :class="$style.keystone" src="/keystone.png" alt="">
+                <img :class="$style.keystone" src="/keystone-min.png" alt="">
               </div>
             </div>
           </vue-grid-item>
