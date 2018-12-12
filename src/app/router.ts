@@ -3,8 +3,6 @@ import VueRouter, { Route, RouteRecord } from 'vue-router';
 import Meta                              from 'vue-meta';
 import { AppRoutes }                     from './app/routes';
 import { HomeRoutes }                    from './home/routes';
-import { CounterRoutes }                 from './counter/routes';
-import { ComponentsRoutes }              from './components/routes';
 
 Vue.use(VueRouter);
 Vue.use(Meta);
@@ -16,8 +14,6 @@ export const router: VueRouter = new VueRouter(
     routes: [
       ...AppRoutes,
       ...HomeRoutes,
-      ...CounterRoutes,
-      ...ComponentsRoutes,
     ],
     scrollBehavior(to: Route, from: Route, savedPosition: { x: number, y: number }) {
       if (to.hash) {

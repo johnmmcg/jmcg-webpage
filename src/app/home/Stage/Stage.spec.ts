@@ -17,8 +17,6 @@ describe('Stage.vue', () => {
       },
     });
 
-    expect(wrapper.find('h1').text()).toBe('vue-starter');
-
     (wrapper as any).vm.$refs.stage.getClientRects = () => {
       return {
         length: 1,

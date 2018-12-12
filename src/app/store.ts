@@ -5,19 +5,18 @@ import { VuexPersist }          from './shared/plugins/vuex-persist/vuex-persist
 import { PersistLocalStorage }  from './shared/plugins/vuex-persist/PersistLocalStorage';
 import { PersistCookieStorage } from './shared/plugins/vuex-persist/PersistCookieStorage';
 import { AppModule }            from './app/module';
-import { CounterModule }        from './counter/module';
 
 Vue.use(Vuex);
 
 const state: IState = (CLIENT && window.__INITIAL_STATE__) || DefaultState;
 
 /* istanbul ignore next */
-const beforePersistLocalStorage = (localState: IState): IState => {
-  delete localState.counter.incrementPending;
-  delete localState.counter.decrementPending;
-
-  return localState;
-};
+// const beforePersistLocalStorage = (localState: IState): IState => {
+//   delete localState.counter.incrementPending;
+//   delete localState.counter.decrementPending;
+//
+//   return localState;
+// };
 
 /* istanbul ignore next */
 const beforePersistCookieStorage = (localState: IState): IState => {
@@ -34,7 +33,6 @@ export const store: Store<IState> = new Vuex.Store(
     plugins: [
       VuexPersist(
         [
-          new PersistLocalStorage(['counter'], beforePersistLocalStorage),
           new PersistCookieStorage(
             ['app'],
             {
@@ -51,4 +49,4 @@ export const store: Store<IState> = new Vuex.Store(
 );
 
 store.registerModule(['app'], AppModule, { preserveState: true });
-store.registerModule(['counter'], CounterModule, { preserveState: true });
+// store.registerModule(['counter'], CounterModule, { preserveState: true });

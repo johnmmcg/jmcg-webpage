@@ -12,7 +12,7 @@ describe('Error.vue', () => {
                           },
     );
 
-    expect(wrapper.find('h1').text()).toBe('Error');
+    expect(wrapper.find('h1').text()).toBe('Sorry!');
   });
 
 });

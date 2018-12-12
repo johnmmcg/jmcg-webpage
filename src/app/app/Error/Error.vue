@@ -3,8 +3,9 @@
     <vue-grid>
       <vue-grid-row>
         <vue-grid-item>
-          <h1>Error</h1>
-          <h3>Try again later!</h3>
+          <h1>Sorry!</h1>
+          <h3>Looks like something went wrong.</h3>
+          <a href="/">Try going back.</a>
         </vue-grid-item>
       </vue-grid-row>
     </vue-grid>
@@ -43,5 +44,32 @@
   .error {
     padding-top: $nav-bar-height;
     text-align:  center;
+  }
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    padding: .25rem 1rem;
+    margin: 1rem auto;
+    width: auto;
+    cursor: pointer;
+    background: transparent;
+    position: relative;
+    font-family: $font-family-headings;
+    font-size: 2rem;
+    border: 2px solid $brand-primary;
+    color: $brand-primary;
+    background-color: transparent;
+    font-weight: normal;
+    outline: none;
+    transition: .25s linear;
+
+    &:hover {
+      transform: scale(1.1);
+      color: $bg-color;
+      background-color: $brand-primary;
+      transition: .25s linear;
+    }
+
   }
 </style>

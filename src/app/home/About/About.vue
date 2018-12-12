@@ -69,7 +69,7 @@
               :class="$style.vuePanel">
               <h3>Caffeinated.</h3>
               <vue-panel-body>
-                <p>Side-note, but related: I love coffee. It's been a passion of mine for a few years now and, fortunately, I find it to be delicious fuel for web development.</p>
+                <p>Side-note, but related: I love coffee. It's been a passion of mine for years now and, fortunately, I find it to be delicious fuel for web development.</p>
               </vue-panel-body>
             </vue-panel>
           </vue-grid-item>
@@ -94,7 +94,6 @@
   import VueGridItem     from '../../shared/components/VueGridItem/VueGridItem.vue';
   import VueGridRow      from '../../shared/components/VueGridRow/VueGridRow.vue';
   import VuePanel        from '../../shared/components/VuePanel/VuePanel.vue';
-  import VuePanelHeader   from '../../shared/components/VuePanel/VuePanelHeader/VuePanelHeader.vue';
   import VuePanelBody    from '../../shared/components/VuePanel/VuePanelBody/VuePanelBody.vue';
   import FadeAnimation from '../../shared/animations/FadeAnimation/FadeAnimation.vue';
   import SlideUpAnimation from '../../shared/animations/SlideUpAnimation/SlideUpAnimation.vue';
@@ -106,7 +105,6 @@
       VueGrid,
       VueGridItem,
       VuePanel,
-      VuePanelHeader,
       VuePanelBody,
       VueGridRow,
       FadeAnimation,
@@ -189,19 +187,11 @@
         self.activeGallery = true;
 
         setTimeout((event) => {
-          if (self.isMobile) {
-            window.scrollTo({
-              top: (window.pageYOffset + window.innerHeight),
-              left: 0,
-              behavior: 'smooth',
-            });
-          } else {
-            window.scrollTo({
-              top: (window.pageYOffset + window.innerHeight),
-              left: 0,
-              behavior: 'smooth',
-            });
-          }
+          window.scrollTo({
+            top: (window.pageYOffset + window.innerHeight),
+            left: 0,
+            behavior: 'smooth',
+          });
         }, 500);
       },
     },
@@ -287,8 +277,7 @@
           @include media(tabletPortrait, max) {
             top: 40px;
             left: 45%;
-            z-index: 0;
-            border-top:solid 12px black;
+            z-index: 0;r-top:solid 12px black;
             border-right:solid 6px transparent;
             border-left:solid 6px transparent;
           }
