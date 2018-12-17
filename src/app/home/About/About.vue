@@ -162,22 +162,6 @@
         self.handleResize();
 
         setTimeout((event) => {
-          if (self.isMobile) {
-            window.scrollTo({
-              top: self.aboutTop,
-              left: 0,
-              behavior: 'smooth',
-            });
-          } else {
-            window.scrollTo({
-              top: document.body.scrollHeight,
-              left: 0,
-              behavior: 'smooth',
-            });
-          }
-        }, 500);
-
-        setTimeout((event) => {
           self.slideUpContact = true;
         }, 2250);
       },
@@ -247,8 +231,7 @@
       position:   relative;
       overflow: visible;
       width: 100%;
-      padding-top: 12vh;
-      padding-bottom: 5rem;
+      padding-top: 15vh;
       display: block;
 
       @include media(tabletPortrait, max) {
@@ -258,7 +241,15 @@
 
     .aboutItems {
       max-width: 1600px;
-      min-height: 600px;
+      min-height: 900px;
+
+      @include media(tabletPortrait, max) {
+        min-height: 1350px;
+      }
+
+      @include media(smallDesktop) {
+        min-height: 500px;
+      }
     }
   }
 

@@ -1,14 +1,11 @@
 <template>
-  <fade-animation>
-    <span v-if="active"
-      :class="$style.aboutMeButton">
-      <button v-on:click="buttonAction">
-        About Me.
-        <div :class="$style.triangle">
-        </div>
-      </button>
-    </span>
-  </fade-animation>
+  <span :class="$style.aboutMeButton">
+    <button v-on:click="buttonAction">
+      About Me.
+      <div :class="$style.triangle">
+      </div>
+    </button>
+  </span>
 </template>
 
 <script lang="ts">
@@ -30,11 +27,6 @@
         type: Function,
         required: true,
       },
-    },
-    data() {
-      return {
-        active: false,
-      };
     },
     mounted() {
       this.active = true;

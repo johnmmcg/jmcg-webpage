@@ -75,7 +75,17 @@
     },
     methods: {
       activateAbout() {
-        this.aboutActive = true;
+        const self = this;
+
+        self.aboutActive = true;
+
+        setTimeout((event) => {
+          window.scrollTo({
+            top: (window.pageYOffset + window.innerHeight),
+            left: 0,
+            behavior: 'smooth',
+          });
+        }, 500);
       },
     },
   };
