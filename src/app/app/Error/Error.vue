@@ -19,7 +19,7 @@
 
   export default {
     metaInfo:   {
-      title: 'vue-starter - an error occurred',
+      title: 'Sorry! An error occurred.',
       meta:  [
         {
           name:    'robots',

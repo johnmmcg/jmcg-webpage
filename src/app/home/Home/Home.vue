@@ -1,8 +1,10 @@
 <template>
   <div :class="$style.home">
     <stage
-      :disable-particles="disableParticles" />
-    <about />
+      :disable-particles="disableParticles"
+      :dispatchAbout="activateAbout"
+       />
+    <about v-if="aboutActive" />
   </div>
 </template>
 
@@ -61,10 +63,20 @@
       Stage,
       About,
     },
+    data() {
+      return {
+        aboutActive: false,
+      };
+    },
     computed:   {
       ...mapState({
                     disableParticles: (state: IState) => state.app.config && state.app.config.features.disableParticles,
                   }),
+    },
+    methods: {
+      activateAbout() {
+        this.aboutActive = true;
+      },
     },
   };
 </script>

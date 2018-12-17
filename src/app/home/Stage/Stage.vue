@@ -89,10 +89,20 @@
         </vue-grid-row>
       </vue-grid>
     </div>
+    <fade-animation>
+      <vue-grid v-if="aboutButtonLoaded" :class="$style.aboutButtonContainer">
+        <vue-grid-row>
+          <vue-grid-item>
+            <about-button :buttonAction="dispatchAbout"></about-button>
+          </vue-grid-item>
+        </vue-grid-row>
+      </vue-grid>
+    </fade-animation>
   </div>
 </template>
 
 <script lang="ts">
+  import AboutButton from './AboutButton.vue';
   import { CircleAnimation } from '../../shared/animations/CircleAnimation';
   import VueGrid             from '../../shared/components/VueGrid/VueGrid.vue';
   import VueGridRow          from '../../shared/components/VueGridRow/VueGridRow.vue';
@@ -102,6 +112,7 @@
 
   export default {
     components: {
+      AboutButton,
       VueGridItem,
       VueGridRow,
       VueGrid,
@@ -113,6 +124,10 @@
         type:     Boolean,
         required: true,
       },
+      dispatchAbout: {
+        type: Function,
+        required: true,
+      },
     },
     data() {
       return {
@@ -121,8 +136,8 @@
         linkOneLoaded: false,
         linkTwoLoaded: false,
         linkThreeLoaded: false,
-        linkFourLoaded: false,
-        moreMessageLoaded: false,
+        aboutButtonLoaded: false,
+        aboutButton: false,
       };
     },
     computed:   {
@@ -180,9 +195,8 @@
       }, 2000);
 
       setTimeout((event) => {
-        self.linkFourLoaded = true;
-        self.moreMessageLoaded = true;
-      }, 2250);
+        self.aboutButtonLoaded = true;
+      }, 2500);
 
     },
     beforeDestroy() {
@@ -203,52 +217,6 @@
     margin-bottom: 5rem;
   }
 
-  .accent {
-    width:      75%;
-    min-height: 100vh;
-    transform:  skewX(-30deg) translateX(95%);
-    box-shadow: $nav-bar-shadow;
-    position:   absolute;
-    transition: transform 250ms linear;
-    @include background-gradient($brand-primary, $brand-dark-primary, -171deg);
-
-    // @include media(tabletPortrait) {
-    //   transform: skewX(-33deg) translateX(100%);
-    // }
-    //
-    // @include media(tabletLandscape) {
-    //   transform: skewX(-44deg) translateX(100%);
-    // }
-    //
-    // @include media(smallDesktop) {
-    //   transform: skewX(-46deg) translateX(117%);
-    //   width:     49%;
-    // }
-  }
-
-  .accentTwo {
-    width:      75%;
-    min-height: 100vh;
-    transform:  skewX(30deg) translateX(-62%);
-    box-shadow: $nav-bar-shadow;
-    position:   absolute;
-    transition: transform 250ms linear;
-    @include background-gradient($brand-dark-primary, $brand-primary, -171deg);
-
-    // @include media(tabletPortrait) {
-    //   transform: skewX(37deg) translateX(-29%);
-    // }
-    //
-    // @include media(tabletLandscape) {
-    //   transform: skewX(38deg) translateX(-29%);
-    // }
-    //
-    // @include media(smallDesktop) {
-    //   transform: skewX(38deg) translateX(-19%);
-    //   width:     49%;
-    // }
-  }
-
   .canvas {
     min-height:       100vh;
     width:            100%;
@@ -264,7 +232,7 @@
 
   .textBlock {
     width: auto;
-    margin-top: 10%;
+    margin-top: 5%;
     text-align: center;
     position: relative;
     padding: .25rem;
@@ -386,14 +354,14 @@
 
   .linksContainer {
     padding: 1rem 2rem;
-    padding-bottom: 6rem;
     height: auto;
+    min-height: 400px;
     max-width: 1000px;
     margin: auto;
 
     @include media(tabletPortrait, max) {
       padding: 0;
-      padding-bottom: 8rem;
+      min-height: 350px;
     }
   }
 
@@ -424,7 +392,13 @@
         transition: .15s linear;
 
         @include media(tabletPortrait, max) {
-          margin-top: .5rem;
+          margin-top: 0rem;
+          font-size: 1.1rem;
+          text-align: center;
+          line-height: 1;
+          font-weight: 400;
+          -webkit-transition: .15s linear;
+          transition: .15s linear;
         }
       }
 
@@ -444,7 +418,7 @@
         transition: .2s ease-in-out;
 
         @include media(tabletPortrait, max) {
-          transform: scale(.9);
+          transform: scale(.8);
         }
 
         &::before {
@@ -485,6 +459,16 @@
       a {
         .linkTitle {
           font-weight: bold;
+
+          @include media(tabletPortrait, max) {
+            font-size: 1.1rem;
+            text-align: center;
+            line-height: 1;
+            margin-top: 0rem;
+            font-weight: 400;
+            -webkit-transition: .15s linear;
+            transition: .15s linear;
+          }
         }
 
         span {
@@ -530,22 +514,9 @@
     }
   }
 
-  .bottomMessageContainer {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
-
-  .message {
-    font-size: 1.5rem;
-    font-family: $font-family;
-    transition: .2s linear;
-    @include media(tabletPortrait, max) {
-      font-size: 3vw;
-      margin: auto 2rem;
-    }
+  .aboutButtonContainer {
+    margin: 1rem auto;
+    min-height: 100px;
   }
 
   .mainTitleLoaded::after {
