@@ -355,7 +355,7 @@
   .linksContainer {
     padding: 1rem 2rem;
     height: auto;
-    min-height: 400px;
+    min-height: 250px;
     max-width: 1000px;
     margin: auto;
 
