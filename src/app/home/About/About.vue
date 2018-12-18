@@ -248,7 +248,7 @@
       }
 
       @include media(smallDesktop) {
-        min-height: 500px;
+        min-height: 625px;
       }
     }
   }
