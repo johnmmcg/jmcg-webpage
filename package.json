@@ -1,7 +1,7 @@
 {
-  "name": "vue-starter",
-  "version": "1.4.0",
-  "description": "A flexible, scalable, opinionated boilerplate for production-ready PWAs with focus on performance, development speed, and best practices",
+  "name": "jmcg-web",
+  "version": "1.0.1",
+  "description": "John McGuinness: Front End Web Developer",
   "repository": {
     "type": "git",
     "url": "https://github.com/devCrossNet/vue-starter.git"
@@ -21,7 +21,7 @@
     "forms",
     "components"
   ],
-  "author": "Johannes Werner <johannes.werner86@gmail.com>",
+  "author": "John McGuinness",
   "license": "MIT",
   "homepage": "https://github.com/devCrossNet/vue-starter",
   "bugs": {

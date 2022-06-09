@@ -41,7 +41,9 @@
                 </ul>
                 <br>
                 <ul>
-                  <li>Full Stack Developer at <a href="https://macguyvermedia.com/" target="_blank">MacGuyver Media</a></li>
+                  <li>Application Developer at <a href="https://musicchoice.com" targer="_blank">Music Choice</a></li>
+                  <li>Software Engineer at <a href="https://github.com/555platform" targer="_blank">Comcast - 555 Web RTC SDK Platform</a></li>
+                  <li>Full Stack Developer at <a href="https://macguyvertech.com/" target="_blank">MacGuyverTech</a></li>
                   <li>Apprentice Developer at <a href="https://launchacademy.com/" target="_blank">Launch Academy</a></li>
                 </ul>
               </vue-panel-body>
